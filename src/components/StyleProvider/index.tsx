@@ -5,7 +5,8 @@ export function useStyleContext() {
   return useContext(StyleContext);
 }
 
-interface StyleProviderProps {
+export interface StyleProviderProps {
+  /** The things to render, most likely the whole entire application itself */
   children: ReactNode;  
 }
 function StyleProvider({ children }: StyleProviderProps) {
@@ -24,3 +25,5 @@ function StyleProvider({ children }: StyleProviderProps) {
     </StyleContext.Provider>
   )
 }
+
+export default StyleProvider;
