@@ -1,3 +1,37 @@
 @function useDynamicVar($key) {
   @return var(--#{$key});
 }
+
+@function nullish($prop, $props...) {
+  @if length($props) and $prop == null {
+    @return nullish($props...);
+  } @else {
+    @return $prop;
+  }
+}
+
+@mixin withMotion {
+  @media (prefers-reduced-motion: no-preference) {
+    .animate {
+      @content;
+    }
+  }
+}
+
+@mixin transition($props: (), $speed: normal, $delay: 0) {
+  $res: ();
+  @each $prop in $props {
+    @if $isMap && map-get($prop, 'prop') == null {
+      @error "Object notation for a property in mixins.transition should have a prop attribute";
+    }
+    $p: nullish(map-get($prop, prop), $props);
+    $s: nullish(map-get($prop, speed), $speed);
+    $d: nullish(map-get($prop, delay), $delay);
+
+    $res: append($res, $p $s ease-in-out $d, $separator: comma);
+  }
+
+  @include withMotion {
+    transition: $res;
+  }
+}
