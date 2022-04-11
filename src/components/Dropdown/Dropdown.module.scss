@@ -1,0 +1,17 @@
+.trigger {
+  position: relative;
+}
+
+.select {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+
+  @media (hover: hover) {
+    &:not(:focus) {
+      pointer-events: none;
+      opacity: 0;
+    }
+  }
+}

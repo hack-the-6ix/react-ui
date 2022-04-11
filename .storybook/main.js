@@ -1,24 +1,35 @@
+const isDev = process.env.NODE_ENV === 'development';
+
 module.exports = {
-  stories: [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
-  ],
+  stories: ['../src/**/*.stories.tsx'],
   addons: [
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    "@storybook/addon-links",
-    "@storybook/addon-docs",
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
     {
-      name: "@storybook/preset-scss",
+      name: 'storybook-addon-sass-postcss',
       options: {
+        postcssLoaderOptions: {
+          postcssOptions: {
+            syntax: 'postcss-scss',
+          },
+        },
         cssLoaderOptions: {
-          modules: true,
+          modules: {
+            localIdentName: isDev
+              ? '[name]__[local]--[hash:base64:5]'
+              : 'ui_[hash:base64:4]',
+            auto: true,
+          },
         },
       },
     },
   ],
-  framework: "@storybook/react",
   typescript: {
-    reactDocgen: 'react-docgen',
+    reactDocgen: 'react-docgen-typescript',
   },
-}
+  framework: '@storybook/react',
+  core: {
+    builder: 'webpack5',
+  },
+};

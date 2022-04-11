@@ -1,3 +1,24 @@
+@use '../../styles/colors.module';
+
 .text {
   font-family: sans-serif;
+}
+
+.type {
+}
+
+.weight {
+  @each $weight in (normal bold) {
+    &--#{$weight} {
+      font-weight: $weight;
+    }
+  }
+}
+
+.color {
+  @each $color in map-keys(colors.$config) {
+    &--#{$color} {
+      color: colors.getColor($color);
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementType } from "react";
+import { ComponentPropsWithoutRef, ElementType } from 'react';
 
 /*
   Special generic for defining components with dynamic elements
@@ -19,5 +19,10 @@ import { ComponentPropsWithoutRef, ElementType } from "react";
       banana='owo'      # Also extends custom defined props
     />
 */
-interface _ComponentWithAs<T extends ElementType> { as?: T };
-export type ComponentWithAs<T extends ElementType, Props> = ComponentPropsWithoutRef<T> & _ComponentWithAs<T> & Props;
+interface _ComponentWithAs<T extends ElementType> {
+  as?: T;
+}
+export type ComponentWithAs<
+  Props,
+  T extends ElementType = ElementType
+> = ComponentPropsWithoutRef<T> & _ComponentWithAs<T> & Props;

@@ -5,8 +5,4 @@ export default {
   component: StyleProvider,
 };
 
-export const DefaultStory = () => (
-  <StyleProvider>
-    owo
-  </StyleProvider>
-);
+export const DefaultStory = () => <i>Insert your app here owo</i>;

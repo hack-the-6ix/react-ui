@@ -1,0 +1,35 @@
+// TODO: Replace with actual theme when given designs
+$config: (
+  primary: (
+    color: red,
+  ),
+  success: (
+    color: #28a745,
+  ),
+  error: (
+    color: #dc3545,
+  ),
+);
+
+@function _rgb($color) {
+  @return #{red($color)}, #{green($color)}, #{blue($color)};
+}
+
+@mixin init {
+  @each $color, $info in $config {
+    --#{$color}: #{_rgb(map-get($info, color))};
+  }
+}
+
+$_modifer-map: (
+  hover: h,
+  active: a,
+);
+@function getColor($color, $modifier: null, $alpha: 1) {
+  $var: $color;
+  @if $modifier {
+    $var: #{$var}-#{map-get($_modifer-map, $modifier)};
+  }
+
+  @return rgba(var(--#{$var}), $alpha);
+}

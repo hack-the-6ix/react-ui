@@ -1,0 +1,46 @@
+@use './colors.module';
+@use './vars.module';
+@use 'sass:math';
+
+@function _stringifyValue($value) {
+  $type: type-of($value);
+  @if $type == string {
+    @return '"#{$value}"';
+  } @else if $type == list {
+    @return _asArray($value);
+  } @else if $type == map {
+    @return _asMap($value);
+  } @else if $type == number {
+    @if not unitless($value) {
+      @return math.div($value, $value * 0 + 1);
+    }
+    @return $value;
+  } @else {
+    @return $value;
+  }
+}
+
+@function _asArray($list) {
+  $new-list: ();
+  @each $value in $list {
+    $new-list: append($new-list, _stringifyValue($value));
+  }
+  @return #{join($new-list, (), $bracketed: true, $separator: comma)};
+}
+
+@function _asMap($map) {
+  $props: ();
+  @each $tag, $attr in $map {
+    $props: append($props, '"#{$tag}": #{ _stringifyValue($attr)}');
+  }
+  @return '{ #{join($props, (), $separator: comma)} }';
+}
+
+@function stringify($obj) {
+  @return _stringifyValue($obj);
+}
+
+:export {
+  colors: stringify(map-keys(colors.$config));
+  speeds: stringify(vars.$speeds);
+}

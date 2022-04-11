@@ -1,3 +1,11 @@
-.test {
-  color: red;
+@use '../../styles/colors.module';
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.star {
+  color: colors.getColor(error);
 }

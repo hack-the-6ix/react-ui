@@ -1,7 +1,8 @@
+import React from 'react';
 import { StyleProvider } from '../src/components';
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   layout: 'centered',
   controls: {
     matchers: {
@@ -9,12 +10,6 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};
 
-export const decorators = [
-  Story => (
-    <StyleProvider>
-      <Story/>
-    </StyleProvider>
-  ),
-];
+export const decorators = [(Story) => <StyleProvider>{Story()}</StyleProvider>];

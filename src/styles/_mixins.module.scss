@@ -1,7 +1,3 @@
-@function useDynamicVar($key) {
-  @return var(--#{$key});
-}
-
 @function nullish($prop, $props...) {
   @if length($props) and $prop == null {
     @return nullish($props...);
