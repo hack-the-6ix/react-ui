@@ -1,7 +1,7 @@
 import Typography, { TypographyProps } from '.';
 
 export default {
-  title: 'Typography',
+  title: 'Components/Typography',
   component: Typography,
   argTypes: {
     as: {

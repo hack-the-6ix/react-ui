@@ -1,27 +1,74 @@
-// Example config, change for the year
-$fonts: (
-  test: (
-    (
-      font-weight: normal,
-      font-style: normal,
-      src: (
-        url('https://fonts.gstatic.com/s/lato/v22/S6uyw4BMUTPHjx4wXiWtFCc.woff2')
-          format('woff2'),
-      ),
-    ),
+$config: (
+  heading1: (
+    font-weight: 800,
+    font-size: 4.25rem,
+    line-height: 4.5rem,
+    letter-spacing: 10%,
+  ),
+  heading2: (
+    font-weight: 700,
+    font-size: 2.625rem,
+    line-height: 3rem,
+    letter-spacing: 5%,
+  ),
+  heading3: (
+    font-weight: 700,
+    font-size: 1.625rem,
+    line-height: 2.5rem,
+    letter-spacing: 5%,
+  ),
+  heading4: (
+    font-weight: 700,
+    font-size: 1rem,
+    line-height: 1.5rem,
+    letter-spacing: 5%,
+  ),
+  subheading: (
+    font-weight: 600,
+    font-size: 1rem,
+    line-height: 1.5rem,
+    letter-spacing: 5%,
+  ),
+  paragraph1: (
+    font-weight: 400,
+    font-size: 1rem,
+    line-height: 1.5rem,
+    letter-spacing: 5%,
+  ),
+  paragraph2: (
+    font-weight: 400,
+    font-size: 0.875rem,
+    line-height: 1.5rem,
+    letter-spacing: 5%,
+  ),
+  paragraph3: (
+    font-weight: 400,
+    font-size: 0.75rem,
+    line-height: 1.5rem,
+    letter-spacing: 5%,
   ),
 );
 
-@mixin init {
-  @each $font, $configs in $fonts {
-    @each $config in $configs {
-      @font-face {
-        @each $prop, $attr in $config {
-          #{$prop}: $attr;
-        }
-        font-family: #{$font};
-        font-display: swap;
+// Example config, change for the year
+@function _fonts($root: '/') {
+  @return (
+    (
+      font-family: "Open Sans",
+      font-weight: 1 999,
+      src: (
+        url('#{$root}OpenSans-VariableFont.woff2') format('woff2-variations'),
+      ),
+    ),
+  );
+}
+
+@mixin init($root: '/') {
+  @each $config in _fonts($root) {
+    @font-face {
+      @each $prop, $attr in $config {
+        #{$prop}: $attr;
       }
+      font-display: swap;
     }
   }
 }

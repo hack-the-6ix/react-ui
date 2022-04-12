@@ -1,5 +1,4 @@
 import { ReactNode, useEffect, createContext, useContext } from 'react';
-import './StyleProvider.module.scss';
 
 const StyleContext = createContext({});
 export function useStyleContext() {

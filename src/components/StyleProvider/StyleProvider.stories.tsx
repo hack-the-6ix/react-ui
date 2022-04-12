@@ -1,7 +1,7 @@
 import StyleProvider from '.';
 
 export default {
-  title: 'StyleProvider',
+  title: 'Components/StyleProvider',
   component: StyleProvider,
 };
 
