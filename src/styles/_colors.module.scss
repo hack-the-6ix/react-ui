@@ -1,56 +1,66 @@
 $config: (
   // Teal
-  primary-1: (
-    color: #23B5AF,
-  ),
+  primary-1:
+    (
+      color: #23b5af,
+    ),
   // Light blue
-  primary-2: (
-    color: #DEF9F9,
-  ),
+  primary-2:
+    (
+      color: #def9f9,
+    ),
   // Navy
-  primary-3: (
-    color: #08566B,
-  ),
+  primary-3:
+    (
+      color: #08566b,
+    ),
   // Light Yellow
-  primary-4: (
-    color: #FFE299,
-  ),
+  primary-4:
+    (
+      color: #ffe299,
+    ),
   // Peach
-  primary-5: (
-    color: #CE9489,
-  ),
+  primary-5:
+    (
+      color: #ce9489,
+    ),
   // Sky Blue
-  secondary-1: (
-    color: #BDF2FE,
-  ),
+  secondary-1:
+    (
+      color: #bdf2fe,
+    ),
   // Orange
-  secondary-2: (
-    color: #FCAF55,
-  ),
+  secondary-2:
+    (
+      color: #fcaf55,
+    ),
   // Bronze
-  secondary-3: (
-    color: #D9A56B,
-  ),
+  secondary-3:
+    (
+      color: #d9a56b,
+    ),
   // Strawberry
-  secondary-4: (
-    color: #CA6969,
-  ),
+  secondary-4:
+    (
+      color: #ca6969,
+    ),
   // Light Purple
-  secondary-5: (
-    color: #D6CFE2,
-  ),
+  secondary-5:
+    (
+      color: #d6cfe2,
+    ),
   copy-dark: (
-    color: #08566B,
+    color: #08566b,
   ),
   copy-light: (
-    color: #FFFFFF,
+    color: #ffffff,
   ),
   success: (
     color: #28a745,
   ),
   error: (
     color: #dc3545,
-  ),
+  )
 );
 
 $_modifer-map: (

@@ -38,7 +38,7 @@ export const variables = {
     NORMAL: 250,
     SLOW: 350,
   } as const,
-}
+};
 
 export type Colors = typeof variables['colors'][number];
 export type TextTypes = typeof variables['textTypes'][number];
@@ -46,4 +46,4 @@ export enum Speeds {
   FAST = variables.speeds.FAST,
   NORMAL = variables.speeds.NORMAL,
   SLOW = variables.speeds.SLOW,
-};
+}

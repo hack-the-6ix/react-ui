@@ -24,8 +24,8 @@ function Typopgrahy({
     <Component
       {...props}
       style={{
-        '--typo-weight': textWeight,
         '--typo-color': textColor && `var(--${textColor})`,
+        '--typo-weight': textWeight,
       }}
       className={cx(
         textType && styles[`type--${textType}`],

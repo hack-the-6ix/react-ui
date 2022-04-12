@@ -24,7 +24,7 @@ function DropdownMenu<OptionType extends DropdownItem>(
     options,
     ...props
   }: DropdownMenuProps<OptionType>,
-  ref: ForwardedRef<HTMLUListElement>,
+  ref: ForwardedRef<HTMLUListElement>
 ) {
   useEffect(() => {
     if (!usePortal) return;
@@ -53,5 +53,5 @@ function DropdownMenu<OptionType extends DropdownItem>(
 
 export default forwardRef(DropdownMenu) as <OptionType extends DropdownItem>(
   props: DropdownMenuProps<OptionType>,
-  ref: ForwardedRef<HTMLUListElement>,
+  ref: ForwardedRef<HTMLUListElement>
 ) => ReturnType<typeof DropdownMenu>;
