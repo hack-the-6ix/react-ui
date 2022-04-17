@@ -22,6 +22,9 @@ export const variables = {
     'secondary-5',
     'copy-dark',
     'copy-light',
+    'success',
+    'error',
+    'disabled',
   ] as const,
   textTypes: [
     'heading1',

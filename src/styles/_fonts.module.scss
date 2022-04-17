@@ -51,15 +51,15 @@ $config: (
 
 // Example config, change for the year
 @function _fonts($root: '/') {
-  @return (
+  @return ((
     (
       font-family: 'Open Sans',
       font-weight: 1 999,
       src: (
         url('#{$root}OpenSans-VariableFont.woff2') format('woff2-variations'),
       )
-    )
-  );
+    ),
+  ));
 }
 
 @mixin init($root: '/') {

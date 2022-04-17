@@ -29,7 +29,7 @@ module.exports = {
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },
-  staticDirs: ['../src/assets/fonts'],
+  staticDirs: ['../assets/fonts'],
   framework: '@storybook/react',
   core: {
     builder: 'webpack5',

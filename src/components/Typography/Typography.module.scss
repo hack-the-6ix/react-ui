@@ -15,10 +15,14 @@
   }
 }
 
-.with-weight {
-  font-weight: var(--typo-weight);
+.color {
+  @each $color, $_ in colors.$config {
+    &--#{$color} {
+      color: colors.getColor($color);
+    }
+  }
 }
 
-.with-color {
-  color: rgb(var(--typo-color));
+.with-weight {
+  font-weight: var(--typo-weight);
 }

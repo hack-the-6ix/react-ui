@@ -1,10 +1,11 @@
 {
   "name": "@ht6/react-ui",
-  "version": "2.0.0",
+  "version": "2.0.0-alpha",
   "module": "dist/esm/index.js",
   "main": "dist/cjs/index.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
+  "private": false,
   "engines": {
     "node": "14"
   },

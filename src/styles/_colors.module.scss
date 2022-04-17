@@ -60,7 +60,10 @@ $config: (
   ),
   error: (
     color: #dc3545,
-  )
+  ),
+  disabled: (
+    color: #DBDBDB,
+  ),
 );
 
 $_modifer-map: (

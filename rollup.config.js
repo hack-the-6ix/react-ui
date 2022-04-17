@@ -41,7 +41,11 @@ export default [
         targets: [
           {
             src: './src/styles/**/*',
-            dest: ['./dist/esm/styles', './dist/cjs/styles'],
+            dest: './dist/styles',
+          },
+          {
+            src: './assets/**/*',
+            dest: './dist/assets',
           },
         ],
       }),

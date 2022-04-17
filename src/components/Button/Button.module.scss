@@ -1,0 +1,22 @@
+@use '../../styles/colors.module';
+
+.base {
+
+}
+
+.color {
+  @each $color, $_ in colors.$config {
+    &--#{$color} {
+      --button-c: colors.getColor($color);
+      --button-h: colors.getColor($color, hover);
+      --button-a: colors.getColor($color, active);
+    }
+  }
+}
+
+.variant {
+  &--solid {
+    background-color: var(--button-color);
+    color: colors.getColor(copy-light);
+  }
+}
