@@ -1,3 +1,5 @@
+@use './vars.module';
+
 @function nullish($prop, $props...) {
   @if length($props) and $prop == null {
     @return nullish($props...);
@@ -8,23 +10,25 @@
 
 @mixin withMotion {
   @media (prefers-reduced-motion: no-preference) {
-    .animate {
+    :global(.animate) & {
       @content;
     }
   }
 }
 
-@mixin transition($props: (), $speed: normal, $delay: 0) {
+@mixin transition($props: (), $speed: normal, $delay: 0ms) {
   $res: ();
   @each $prop in $props {
-    @if $isMap && map-get($prop, 'prop') == null {
-      @error "Object notation for a property in mixins.transition should have a prop attribute";
+    @if type-of($prop) == 'map' {
+      @if map-get($prop, 'prop') == null {
+        @error "Object notation for a property in mixins.transition should have a prop attribute";
+      }
+      $prop: nullish(map-get($prop, prop), $props);
+      $speed: nullish(map-get($prop, speed), $speed);
+      $delay: nullish(map-get($prop, delay), $delay);
     }
-    $p: nullish(map-get($prop, prop), $props);
-    $s: nullish(map-get($prop, speed), $speed);
-    $d: nullish(map-get($prop, delay), $delay);
 
-    $res: append($res, $p $s ease-in-out $d, $separator: comma);
+    $res: append($res, $props map-get(vars.$speeds, $speed) ease-in-out $delay, $separator: comma);
   }
 
   @include withMotion {

@@ -61,8 +61,11 @@ $config: (
   error: (
     color: #dc3545,
   ),
-  disabled: (
+  disabled-light: (
     color: #DBDBDB,
+  ),
+  disabled-dark: (
+    color: #717171,
   ),
 );
 
@@ -87,8 +90,8 @@ $_modifer-map: (
   @each $color, $info in $config {
     $c: map-get($info, color);
     #{_getVar($color)}: #{_rgb($c)};
-    #{_getVar($color, hover)}: #{_rgb(darken($c, 0.06))};
-    #{_getVar($color, active)}: #{_rgb(darken($c, 0.12))};
+    #{_getVar($color, hover)}: #{_rgb(darken($c, 6%))};
+    #{_getVar($color, active)}: #{_rgb(darken($c, 12%))};
   }
 }
 

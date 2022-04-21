@@ -12,15 +12,18 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     element: ElementType;
   };
   disabled?: boolean;
-  variant?: 'solid';
-  color?: Colors;
+  buttonVariant?: 'solid';
+  buttonColor?: Colors;
 }
 
 function Button({
-  color = 'primary-1',
-  variant = 'solid',
+  /** Color of the button */
+  buttonColor = 'primary-1',
+  /** Type of button */
+  buttonVariant = 'solid',
   className,
   children,
+  /** For applying icons to the button */
   icon,
   ...props
 }: ButtonProps) {
@@ -28,22 +31,23 @@ function Button({
     <Typography
       {...props}
       className={cx(
-        variant && styles[`variant--${variant}`],
-        styles[`color--${color}`],
+        buttonVariant && styles[`variant--${buttonVariant}`],
+        props.disabled && styles['disabled'],
+        styles[`color--${buttonColor}`],
         styles.base,
         className,
       )}
-      textType='paragraph1'
+      textType='heading4'
       as='button'
     >
       {icon?.placement === 'left' && (
-        <span>
+        <span className={styles.icon}>
           <icon.element />
         </span>
       )}
       <span>{icon?.placement === 'center' ? <icon.element /> : children}</span>
       {icon?.placement === 'right' && (
-        <span>
+        <span className={styles.icon}>
           <icon.element />
         </span>
       )}
