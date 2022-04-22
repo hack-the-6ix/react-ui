@@ -1,8 +1,8 @@
 import { ButtonHTMLAttributes, ElementType, ReactNode } from 'react';
 import cx from 'classnames';
 import { Typography } from '..';
-import styles from './Button.module.scss';
 import { Colors } from '../../styles';
+import styles from './Button.module.scss';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
@@ -35,7 +35,7 @@ function Button({
         props.disabled && styles['disabled'],
         styles[`color--${buttonColor}`],
         styles.base,
-        className,
+        className
       )}
       textType='heading4'
       as='button'

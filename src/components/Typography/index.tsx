@@ -10,6 +10,7 @@ export type TypographyProps = ComponentWithAs<{
   textType: TextTypes;
   /** Colors based on theme */
   textColor?: Colors;
+  /** Name of the class */
   className?: string;
 }>;
 function Typopgrahy({

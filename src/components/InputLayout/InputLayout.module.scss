@@ -1,4 +1,4 @@
-@use '../../styles/colors.module';
+@use '../../styles/mixins.module';
 
 .container {
   display: grid;
@@ -6,6 +6,10 @@
   gap: 0.5rem;
 }
 
-.star {
-  color: colors.getColor(error);
+.hide-label {
+  display: none;
+}
+
+.status {
+  @include mixins.transition(color);
 }

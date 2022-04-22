@@ -49,6 +49,9 @@ $config: (
     (
       color: #d6cfe2,
     ),
+  'grey': (
+    color: #9e9e9e,
+  ),
   copy-dark: (
     color: #08566b,
   ),
@@ -62,11 +65,11 @@ $config: (
     color: #dc3545,
   ),
   disabled-light: (
-    color: #DBDBDB,
+    color: #dbdbdb,
   ),
   disabled-dark: (
     color: #717171,
-  ),
+  )
 );
 
 $_modifer-map: (

@@ -28,7 +28,11 @@
       $delay: nullish(map-get($prop, delay), $delay);
     }
 
-    $res: append($res, $props map-get(vars.$speeds, $speed) ease-in-out $delay, $separator: comma);
+    $res: append(
+      $res,
+      $props map-get(vars.$speeds, $speed) ease-in-out $delay,
+      $separator: comma
+    );
   }
 
   @include withMotion {

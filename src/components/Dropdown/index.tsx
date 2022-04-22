@@ -1,8 +1,8 @@
 import { MouseEventHandler, ReactNode, useState } from 'react';
 import cx from 'classnames';
 import { InputLayout, InputLayoutProps, Button } from '..';
-import styles from './Dropdown.module.scss';
 import DropdownMenu from './DropdownMenu';
+import styles from './Dropdown.module.scss';
 
 export interface DropdownItem {
   label: ReactNode;
