@@ -3,8 +3,9 @@ import cx from 'classnames';
 import { Typography } from '..';
 import { Colors } from '../../styles';
 import styles from './Button.module.scss';
+import { ComponentWithAs } from '../../types';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface _ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   children?: ReactNode;
   icon?: {
@@ -15,6 +16,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonVariant?: 'solid';
   buttonColor?: Colors;
 }
+
+export type ButtonProps = ComponentWithAs<_ButtonProps>;
 
 function Button({
   /** Color of the button */
@@ -38,7 +41,7 @@ function Button({
         className
       )}
       textType='heading4'
-      as='button'
+      as={props.as ?? 'button'}
     >
       {icon?.placement === 'left' && (
         <span className={styles.icon}>
