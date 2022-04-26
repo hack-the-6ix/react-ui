@@ -11,7 +11,6 @@ export interface StyleProviderProps {
 }
 function StyleProvider({ children }: StyleProviderProps) {
   useEffect(() => {
-    if (!window) return;
     window.addEventListener(
       'load',
       () => {

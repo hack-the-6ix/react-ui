@@ -36,6 +36,7 @@ export default [
         modules: isDev || {
           generateScopedName: 'ui_[hash:base64:4]',
         },
+        inject: false,
       }),
       copy({
         targets: [
