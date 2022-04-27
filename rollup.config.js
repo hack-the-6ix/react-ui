@@ -36,6 +36,8 @@ export default [
         modules: isDev || {
           generateScopedName: 'ui_[hash:base64:4]',
         },
+        inject: false,
+        extract: true,
       }),
       copy({
         targets: [
@@ -56,6 +58,16 @@ export default [
     input: 'dist/esm/types/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     external: [/\.css$/],
-    plugins: [dts()],
+    plugins: [
+      dts(),
+      copy({
+        targets: [
+          {
+            src: './dist/esm/index.css',
+            dest: './dist/styles',
+          },
+        ],
+      }),
+    ],
   },
 ];
