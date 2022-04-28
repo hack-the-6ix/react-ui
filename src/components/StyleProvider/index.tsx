@@ -20,6 +20,13 @@ function StyleProvider({ children }: StyleProviderProps) {
       },
       { once: true }
     );
+
+    // Fallback for safari
+    window.setTimeout(() => {
+      window.requestAnimationFrame(() => {
+        window.document.documentElement.classList.add('animate');
+      });
+    }, 500);
   }, []);
 
   return <StyleContext.Provider value={{}}>{children}</StyleContext.Provider>;
