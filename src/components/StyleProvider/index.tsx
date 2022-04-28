@@ -8,10 +8,8 @@ export function useStyleContext() {
 export interface StyleProviderProps {
   /** The things to render, most likely the whole entire application itself */
   children: ReactNode;
-  /** Inject global styles */
-  injectStyles: Boolean | string;
 }
-function StyleProvider({ injectStyles, children }: StyleProviderProps) {
+function StyleProvider({ children }: StyleProviderProps) {
   useEffect(() => {
     window.addEventListener(
       'load',
@@ -23,14 +21,6 @@ function StyleProvider({ injectStyles, children }: StyleProviderProps) {
       { once: true }
     );
   }, []);
-
-  useEffect(() => {
-    if (!injectStyles) return;
-    if (typeof injectStyles === 'boolean') {
-      injectStyles = '@ht6/react-ui/dist/styles/index.css';
-    }
-    import(injectStyles as string);
-  }, [ injectStyles ]);
 
   return <StyleContext.Provider value={{}}>{children}</StyleContext.Provider>;
 }

@@ -23,14 +23,14 @@
       @if map-get($prop, 'prop') == null {
         @error "Object notation for a property in mixins.transition should have a prop attribute";
       }
-      $prop: nullish(map-get($prop, prop), $props);
       $speed: nullish(map-get($prop, speed), $speed);
       $delay: nullish(map-get($prop, delay), $delay);
+      $prop: nullish(map-get($prop, prop), $props);
     }
 
     $res: append(
       $res,
-      $props map-get(vars.$speeds, $speed) ease-in-out $delay,
+      $prop map-get(vars.$speeds, $speed) ease-in-out $delay,
       $separator: comma
     );
   }
