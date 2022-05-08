@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, createContext, useContext } from 'react';
+import { ReactNode, useLayoutEffect, createContext, useContext } from 'react';
 
 const StyleContext = createContext({});
 export function useStyleContext() {
@@ -10,14 +10,12 @@ export interface StyleProviderProps {
   children: ReactNode;
 }
 function StyleProvider({ children }: StyleProviderProps) {
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener(
       'load',
-      () => {
-        window.requestAnimationFrame(() => {
-          window.document.documentElement.classList.add('animate');
-        });
-      },
+      () => window.requestAnimationFrame(() => {
+        window.document.documentElement.classList.add('animate');
+      }),
       { once: true }
     );
 
@@ -26,7 +24,7 @@ function StyleProvider({ children }: StyleProviderProps) {
       window.requestAnimationFrame(() => {
         window.document.documentElement.classList.add('animate');
       });
-    }, 500);
+    }, 100);
   }, []);
 
   return <StyleContext.Provider value={{}}>{children}</StyleContext.Provider>;
