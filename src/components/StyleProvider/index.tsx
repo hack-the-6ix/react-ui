@@ -13,9 +13,10 @@ function StyleProvider({ children }: StyleProviderProps) {
   useLayoutEffect(() => {
     window.addEventListener(
       'load',
-      () => window.requestAnimationFrame(() => {
-        window.document.documentElement.classList.add('animate');
-      }),
+      () =>
+        window.requestAnimationFrame(() => {
+          window.document.documentElement.classList.add('animate');
+        }),
       { once: true }
     );
 

@@ -58,7 +58,7 @@ $config: (
       src: (
         url('#{$root}OpenSans-VariableFont.woff2') format('woff2-variations'),
       ),
-    ),
+    )
   );
   @return $res;
 }
