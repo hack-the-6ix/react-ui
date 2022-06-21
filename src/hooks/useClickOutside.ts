@@ -9,7 +9,7 @@ import { MutableRefObject, useEffect, useRef } from 'react';
 export function useClickOutside<T extends Element | Element[]>(
   ref: MutableRefObject<T extends (infer E)[] ? E : T>,
   action: () => void,
-  skip = false
+  skip = false,
 ) {
   const _action = useRef(action);
   useEffect(() => {

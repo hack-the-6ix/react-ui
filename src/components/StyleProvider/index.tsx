@@ -17,7 +17,7 @@ function StyleProvider({ children }: StyleProviderProps) {
         window.requestAnimationFrame(() => {
           window.document.documentElement.classList.add('animate');
         }),
-      { once: true }
+      { once: true },
     );
 
     // Fallback for safari

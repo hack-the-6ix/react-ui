@@ -24,5 +24,5 @@ interface _ComponentWithAs<T extends ElementType> {
 }
 export type ComponentWithAs<
   Props,
-  T extends ElementType = ElementType
+  T extends ElementType = ElementType,
 > = ComponentPropsWithoutRef<T> & _ComponentWithAs<T> & Props;

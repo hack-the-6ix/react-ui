@@ -1,7 +1,7 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
 export function useTwoWayState<T>(
-  initState: T
+  initState: T,
 ): [T, Dispatch<SetStateAction<T>>] {
   const [state, setState] = useState(initState);
   useEffect(() => {

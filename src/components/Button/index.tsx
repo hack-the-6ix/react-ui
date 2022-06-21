@@ -38,7 +38,7 @@ function Button({
         props.disabled && styles['disabled'],
         styles[`color--${buttonColor}`],
         styles.base,
-        className
+        className,
       )}
       textType='heading4'
       as={props.as ?? 'button'}

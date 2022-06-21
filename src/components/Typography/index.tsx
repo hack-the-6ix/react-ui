@@ -32,7 +32,7 @@ function Typopgrahy({
         textType && styles[`type--${textType}`],
         textWeight && styles[`with-weight`],
         styles.text,
-        className
+        className,
       )}
     />
   );

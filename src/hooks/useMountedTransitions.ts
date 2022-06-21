@@ -11,7 +11,7 @@ export function useMountedTransitions(initState: boolean, delay: Speeds) {
   useEffect(() => {
     const timer = window.setTimeout(
       () => setPost(pre),
-      pre ? 0 : _delay.current
+      pre ? 0 : _delay.current,
     );
     return () => window.clearTimeout(timer);
   }, [pre]);

@@ -44,7 +44,7 @@ function Input({
         as='input'
         className={cx(
           outlineColor && styles[`outline--${outlineColor}`],
-          styles.input
+          styles.input,
         )}
         placeholder={label}
         {...props}
