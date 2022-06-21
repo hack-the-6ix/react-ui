@@ -8,9 +8,9 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /** The default color of the input border */
   outlineColor?: Colors;
   /** Hides label of input (Only visually) */
-  hideLabel: InputLayoutProps['hideLabel'];
+  hideLabel?: InputLayoutProps['hideLabel'];
   /** For setting success/error states */
-  status: InputLayoutProps['status'];
+  status?: InputLayoutProps['status'];
   /** The label of the input and placeholder (if not provided) */
   label: InputLayoutProps['label'];
   /** Name of form input */
