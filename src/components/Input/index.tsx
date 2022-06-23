@@ -47,6 +47,7 @@ function Input({
           styles.input,
         )}
         placeholder={label}
+        name={name}
         {...props}
       />
     </InputLayout>
