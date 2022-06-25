@@ -1,0 +1,59 @@
+@use '../../styles/colors.module';
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.checkbox {
+  $transition: 0.2s ease-in-out;
+
+  position: relative;
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1.5rem;
+
+  border: 1px solid var(--color);
+  border-radius: 2px;
+
+  transition: background $transition, border-color $transition;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    left: 50%;
+    top: 50%;
+    background: url(checkmark.svg);
+
+    transition: transform $transition;
+    transform-origin: 0 0;
+    transform: rotateZ(-45deg) scale(0) translate(-50%, -50%);
+  }
+
+  &.color {
+    @each $color in map-keys(colors.$config) {
+      &--#{$color} {
+        --color: #{colors.getColor($color)};
+      }
+    }
+  }
+}
+
+.checked {
+  background: var(--color);
+
+  &::after {
+    transform: rotateZ(0) scale(1) translate(-50%, -50%);
+  }
+}
