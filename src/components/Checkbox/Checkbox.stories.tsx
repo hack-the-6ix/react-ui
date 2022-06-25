@@ -1,4 +1,5 @@
 import Checkbox from '.';
+import { Typography } from '..';
 
 export default {
   title: 'Checkbox',
@@ -10,6 +11,10 @@ export const DefaultStory = () => (
     defaultChecked
     onChange={(evt) => console.log(evt.target.checked)}
     color='success'
-    label={<p>Lorem Ipsum Dolor Sit Amet</p>}
+    label={
+      <Typography textType='heading1' textColor='success' textWeight='normal'>
+        Lorem Ipsum Dolor sit Amet
+      </Typography>
+    }
   />
 );
