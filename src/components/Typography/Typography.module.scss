@@ -1,24 +1,28 @@
 @use '../../styles/colors.module';
+@use '../../styles/fonts.module';
 
 .text {
-  font-family: sans-serif;
+  font-family: 'Open Sans', serif;
 }
 
 .type {
-}
-
-.weight {
-  @each $weight in (normal bold) {
-    &--#{$weight} {
-      font-weight: $weight;
+  @each $tag, $config in fonts.$config {
+    &--#{$tag} {
+      @each $prop, $attr in $config {
+        #{$prop}: #{$attr};
+      }
     }
   }
 }
 
 .color {
-  @each $color in map-keys(colors.$config) {
+  @each $color, $_ in colors.$config {
     &--#{$color} {
       color: colors.getColor($color);
     }
   }
+}
+
+.with-weight {
+  font-weight: var(--typo-weight);
 }

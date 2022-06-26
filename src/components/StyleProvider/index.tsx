@@ -1,5 +1,4 @@
-import { ReactNode, useEffect, createContext, useContext } from 'react';
-import './StyleProvider.module.scss';
+import { ReactNode, useLayoutEffect, createContext, useContext } from 'react';
 
 const StyleContext = createContext({});
 export function useStyleContext() {
@@ -11,17 +10,22 @@ export interface StyleProviderProps {
   children: ReactNode;
 }
 function StyleProvider({ children }: StyleProviderProps) {
-  useEffect(() => {
-    if (!window) return;
+  useLayoutEffect(() => {
     window.addEventListener(
       'load',
-      () => {
+      () =>
         window.requestAnimationFrame(() => {
           window.document.documentElement.classList.add('animate');
-        });
-      },
-      { once: true }
+        }),
+      { once: true },
     );
+
+    // Fallback for safari
+    window.setTimeout(() => {
+      window.requestAnimationFrame(() => {
+        window.document.documentElement.classList.add('animate');
+      });
+    }, 100);
   }, []);
 
   return <StyleContext.Provider value={{}}>{children}</StyleContext.Provider>;

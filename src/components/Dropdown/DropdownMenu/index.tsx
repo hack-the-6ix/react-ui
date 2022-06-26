@@ -47,7 +47,7 @@ function DropdownMenu<OptionType extends DropdownItem>(
         </li>
       ))}
     </ul>,
-    usePortal
+    usePortal,
   );
 }
 

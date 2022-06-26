@@ -1,8 +1,8 @@
 import { MouseEventHandler, ReactNode, useState } from 'react';
 import cx from 'classnames';
 import { InputLayout, InputLayoutProps, Button } from '..';
-import styles from './Dropdown.module.scss';
 import DropdownMenu from './DropdownMenu';
+import styles from './Dropdown.module.scss';
 
 export interface DropdownItem {
   label: ReactNode;
@@ -28,7 +28,7 @@ function Dropdown<OptionType extends DropdownItem>({
   value,
   ...props
 }: DropdownProps<OptionType>) {
-  const [ showDropdown, setShowDropdown ] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
   const selectedOption = options.find((option) => option.value === value);
 
   return (
@@ -44,10 +44,7 @@ function Dropdown<OptionType extends DropdownItem>({
             </option>
           ))}
         </select>
-        <Button
-          onClick={() => setShowDropdown(!showDropdown)}
-          tabIndex={-1}
-        >
+        <Button onClick={() => setShowDropdown(!showDropdown)} tabIndex={-1}>
           {selectedOption?.label ?? placeholder}
         </Button>
       </div>

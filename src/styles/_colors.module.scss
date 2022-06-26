@@ -1,7 +1,62 @@
-// TODO: Replace with actual theme when given designs
 $config: (
-  primary: (
-    color: red,
+  // Teal
+  primary-1:
+    (
+      color: #23b5af,
+    ),
+  // Light blue
+  primary-2:
+    (
+      color: #def9f9,
+    ),
+  // Navy
+  primary-3:
+    (
+      color: #08566b,
+    ),
+  // Light Yellow
+  primary-4:
+    (
+      color: #ffe299,
+    ),
+  // Peach
+  primary-5:
+    (
+      color: #ce9489,
+    ),
+  // Sky Blue
+  secondary-1:
+    (
+      color: #bdf2fe,
+    ),
+  // Orange
+  secondary-2:
+    (
+      color: #fcaf55,
+    ),
+  // Bronze
+  secondary-3:
+    (
+      color: #d9a56b,
+    ),
+  // Strawberry
+  secondary-4:
+    (
+      color: #ca6969,
+    ),
+  // Light Purple
+  secondary-5:
+    (
+      color: #d6cfe2,
+    ),
+  'grey': (
+    color: #9e9e9e,
+  ),
+  copy-dark: (
+    color: #0b3648,
+  ),
+  copy-light: (
+    color: #ffffff,
   ),
   success: (
     color: #28a745,
@@ -9,27 +64,40 @@ $config: (
   error: (
     color: #dc3545,
   ),
+  disabled-light: (
+    color: #dbdbdb,
+  ),
+  disabled-dark: (
+    color: #717171,
+  )
+);
+
+$_modifer-map: (
+  hover: h,
+  active: a,
 );
 
 @function _rgb($color) {
   @return #{red($color)}, #{green($color)}, #{blue($color)};
 }
 
-@mixin init {
-  @each $color, $info in $config {
-    --#{$color}: #{_rgb(map-get($info, color))};
-  }
-}
-
-$_modifer-map: (
-  hover: h,
-  active: a,
-);
-@function getColor($color, $modifier: null, $alpha: 1) {
+@function _getVar($color, $modifier: null) {
   $var: $color;
   @if $modifier {
     $var: #{$var}-#{map-get($_modifer-map, $modifier)};
   }
+  @return --#{$var};
+}
 
-  @return rgba(var(--#{$var}), $alpha);
+@mixin init {
+  @each $color, $info in $config {
+    $c: map-get($info, color);
+    #{_getVar($color)}: #{_rgb($c)};
+    #{_getVar($color, hover)}: #{_rgb(darken($c, 6%))};
+    #{_getVar($color, active)}: #{_rgb(darken($c, 12%))};
+  }
+}
+
+@function getColor($color, $modifier: null, $alpha: 1) {
+  @return rgba(var(_getVar($color, $modifier)), $alpha);
 }

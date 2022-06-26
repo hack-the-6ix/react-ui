@@ -3,6 +3,7 @@ const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
   stories: ['../src/**/*.stories.tsx'],
   addons: [
+    '@storybook/addon-docs',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
@@ -28,6 +29,7 @@ module.exports = {
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },
+  staticDirs: ['../assets/fonts'],
   framework: '@storybook/react',
   core: {
     builder: 'webpack5',
