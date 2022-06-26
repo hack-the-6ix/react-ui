@@ -1,0 +1,58 @@
+@use '../../styles/colors.module';
+@use '../../styles/mixins.module';
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hiddenCheckbox {
+  display: none;
+
+  &:checked + .checkbox {
+    background: var(--color);
+    &::after {
+      transform: rotateZ(0) scale(1) translate(-50%, -50%);
+    }
+  }
+}
+
+.checkbox {
+  @include mixins.transition((background, border-color), fast);
+
+  position: relative;
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1.5rem;
+
+  border: 0.0625rem solid var(--color);
+  border-radius: 0.125rem;
+
+  &::after {
+    @include mixins.transition((transform), fast);
+
+    content: '';
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    left: 50%;
+    top: 50%;
+    background: url(checkmark.svg);
+
+    transform-origin: 0 0;
+    transform: rotateZ(-45deg) scale(0) translate(-50%, -50%);
+  }
+
+  &.color {
+    @each $color in map-keys(colors.$config) {
+      &--#{$color} {
+        --color: #{colors.getColor($color)};
+      }
+    }
+  }
+}
