@@ -1,20 +1,31 @@
-import Checkbox from '.';
+import Checkbox, { CheckboxProps } from '.';
 import { Typography } from '..';
 
 export default {
-  title: 'Checkbox',
+  title: 'Components/Checkbox',
   component: Checkbox,
+  argTypes: {
+    // Override label prop since Storybook controls don't support ReactNodes
+    label: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
 };
 
-export const DefaultStory = () => (
+export const DefaultStory = (args: CheckboxProps) => (
   <Checkbox
-    defaultChecked
+    {...args}
     onChange={(evt) => console.log(evt.target.checked)}
-    color='success'
     label={
-      <Typography textType='heading1' textColor='success' textWeight='normal'>
-        Lorem Ipsum Dolor sit Amet
+      <Typography textType='subheading' textColor={args.color}>
+        {args.label}
       </Typography>
     }
   />
 );
+
+DefaultStory.args = {
+  label: 'Click me!',
+};
