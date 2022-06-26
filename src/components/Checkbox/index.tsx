@@ -6,43 +6,34 @@ import { Colors } from '../../styles';
 
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: ReactNode;
-  disabled?: boolean;
-  checked?: boolean;
   color?: Colors;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => unknown;
+  name: string;
 }
 
 function Checkbox({
-  checked,
-  onChange,
-  color = 'primary',
+  /** The color of the checkbox **/
+  color = 'copy-dark',
+  /** Label appearing to the right of the checkbox **/
   label,
+  name,
+  className,
   children,
   ...props
 }: CheckboxProps) {
-  const [_checked, setChecked] = useState<boolean>(Boolean(checked));
-
-  function _onChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setChecked(event.target.checked);
-    onChange?.(event);
-  }
-
   return (
-    <Typography as='label' textType='input' className={styles.container}>
+    <Typography
+      as='label'
+      textType='subheading'
+      textColor='copy-dark'
+      className={cx(styles.container, className)}
+    >
       <input
         {...props}
+        name={name}
         type='checkbox'
-        checked={_checked}
-        onChange={_onChange}
-        className={styles.hidden}
+        className={styles.hiddenCheckbox}
       />
-      <span
-        className={cx(
-          styles.checkbox,
-          _checked && styles.checked,
-          styles[`color--${color}`]
-        )}
-      ></span>
+      <span className={cx(styles.checkbox, styles[`color--${color}`])}></span>
       {label}
     </Typography>
   );
