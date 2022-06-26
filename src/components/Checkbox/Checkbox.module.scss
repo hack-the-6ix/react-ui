@@ -1,4 +1,5 @@
 @use '../../styles/colors.module';
+@use '../../styles/mixins.module';
 
 .container {
   position: relative;
@@ -9,12 +10,19 @@
   cursor: pointer;
 }
 
-.hidden {
+.hiddenCheckbox {
   display: none;
+
+  &:checked + .checkbox {
+    background: var(--color);
+    &::after {
+      transform: rotateZ(0) scale(1) translate(-50%, -50%);
+    }
+  }
 }
 
 .checkbox {
-  $transition: 0.2s ease-in-out;
+  @include mixins.transition((background, border-color), fast);
 
   position: relative;
   display: inline-block;
@@ -22,12 +30,12 @@
   height: 1.5rem;
   margin-right: 1.5rem;
 
-  border: 1px solid var(--color);
-  border-radius: 2px;
-
-  transition: background $transition, border-color $transition;
+  border: 0.0625rem solid var(--color);
+  border-radius: 0.125rem;
 
   &::after {
+    @include mixins.transition((transform), fast);
+
     content: '';
     position: absolute;
     width: 1rem;
@@ -36,7 +44,6 @@
     top: 50%;
     background: url(checkmark.svg);
 
-    transition: transform $transition;
     transform-origin: 0 0;
     transform: rotateZ(-45deg) scale(0) translate(-50%, -50%);
   }
@@ -47,13 +54,5 @@
         --color: #{colors.getColor($color)};
       }
     }
-  }
-}
-
-.checked {
-  background: var(--color);
-
-  &::after {
-    transform: rotateZ(0) scale(1) translate(-50%, -50%);
   }
 }
