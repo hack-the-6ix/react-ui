@@ -18,11 +18,7 @@ export const DefaultStory = (args: CheckboxProps) => (
   <Checkbox
     {...args}
     onChange={(evt) => console.log(evt.target.checked)}
-    label={
-      <Typography textType='subheading' textColor={args.color}>
-        {args.label}
-      </Typography>
-    }
+    label={args.label}
   />
 );
 
