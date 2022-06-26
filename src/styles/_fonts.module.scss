@@ -50,6 +50,7 @@ $config: (
 );
 
 // Example config, change for the year
+// prettier-ignore
 @function _fonts($root: '/') {
   @return (
     (
@@ -57,8 +58,8 @@ $config: (
       font-weight: 1 999,
       src: (
         url('#{$root}OpenSans-VariableFont.woff2') format('woff2-variations'),
-      )
-    )
+      ),
+    ),
   );
 }
 
