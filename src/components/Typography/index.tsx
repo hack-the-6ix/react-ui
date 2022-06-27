@@ -13,7 +13,7 @@ export type TypographyProps = ComponentWithAs<{
   /** Name of the class */
   className?: string;
 }>;
-function Typopgrahy({
+function Typography({
   as: Component = 'span',
   className,
   textWeight,
@@ -38,4 +38,4 @@ function Typopgrahy({
   );
 }
 
-export default Typopgrahy;
+export default Typography;
