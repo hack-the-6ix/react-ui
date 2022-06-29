@@ -27,6 +27,8 @@ export const variables = {
     'disabled-light',
     'disabled-dark',
     'grey',
+    'grey-light',
+    'grey-dark',
   ] as const,
   textTypes: [
     'heading1',
