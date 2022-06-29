@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import cx from 'classnames';
 import { Typography } from '..';
 import styles from './InputLayout.module.scss';
+import { TextTypes } from '../../styles';
 
 export interface InputLayoutProps {
   children: ReactNode;
@@ -14,6 +15,7 @@ export interface InputLayoutProps {
     state: 'error' | 'success';
     text?: ReactNode;
   };
+  labelTextType?: TextTypes;
 }
 
 function InputLayout({
@@ -24,6 +26,7 @@ function InputLayout({
   children,
   name,
   required,
+  labelTextType = 'subheading',
   ...props
 }: InputLayoutProps) {
   return (
@@ -31,7 +34,7 @@ function InputLayout({
       <Typography
         className={cx(hideLabel && styles['hide-label'])}
         as='label'
-        textType='subheading'
+        textType={labelTextType}
         textColor='primary-3'
         htmlFor={name}
       >

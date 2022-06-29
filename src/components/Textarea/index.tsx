@@ -1,28 +1,32 @@
 import { InputLayout, InputLayoutProps, Typography } from '..';
-import { Colors } from '../../styles';
 import { HTMLAttributes } from 'react';
 import cx from 'classnames';
 import styles from './Textarea.module.scss';
 
 export interface TextareaProps
   extends HTMLAttributes<HTMLTextAreaElement>,
-    Omit<InputLayoutProps, 'children'> {
-  outlineColor?: Colors;
+    Omit<InputLayoutProps, 'children' | 'status'> {
   limit?: number;
   value?: string;
+}
+
+function countWords(str?: string) {
+  return str?.split(/\s+/)
+             .filter((c: string) => c != '')
+             .length ?? 0;
 }
 
 function Textarea({
   hideLabel,
   label,
-  status,
   className,
-  outlineColor,
   limit,
   ...props
 }: TextareaProps) {
-  const count = props.value?.length ?? 0;
-  const atLimit = limit ? count >= limit : false;
+  const count = countWords(props.value);
+  console.log(count)
+
+  const overLimit = limit ? count > limit : false;
 
   return (
     <InputLayout
@@ -30,25 +34,25 @@ function Textarea({
       hideLabel={hideLabel}
       className={className}
       name={props.name}
-      status={status}
       label={label}
+      labelTextType='heading4'
     >
       <Typography
         {...props}
         className={cx(
-          outlineColor && styles[`outline--${outlineColor}`],
+          overLimit ? styles[`outline--error`] : styles[`outline--copy-dark`],
           styles.field
         )}
-        textType='paragraph2'
+        textType='paragraph1'
         as='textarea'
       />
-      {!status && limit && (
+      {limit && (
         <Typography
-          textColor={atLimit ? 'error' : 'disabled-dark'}
+          textColor={overLimit ? 'error' : 'disabled-dark'}
           className={styles.text}
-          textType='paragraph3'
+          textType='paragraph1'
         >
-          {count} / {limit}
+          {count}/{limit} words
         </Typography>
       )}
     </InputLayout>
