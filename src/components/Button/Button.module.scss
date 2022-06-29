@@ -53,8 +53,38 @@
 
     &.disabled,
     &:disabled {
-      background-color: colors.getColor(disabled-light);
-      color: colors.getColor(disabled-dark);
+      background-color: colors.getColor(grey-light);
+      color: colors.getColor(grey-dark);
+    }
+  }
+
+  &--outline {
+    @include mixins.transition(background-color);
+    background-color: colors.getColor(copy-light);
+    color: var(--button-c);
+    border: 1px solid var(--button-c);
+
+    &:not(:disabled),
+    &:not(.disabled) {
+      &:hover,
+      &:focus {
+        background-color: var(--button-h);
+        color: colors.getColor(copy-light);
+        border: none;
+      }
+
+      &:active {
+        background-color: var(--button-a);
+        color: colors.getColor(copy-light);
+        border: none;
+      }
+    }
+
+    &.disabled,
+    &:disabled {
+      background-color: colors.getColor(grey-light);
+      color: colors.getColor(grey-dark);
+      border: none;
     }
   }
 }

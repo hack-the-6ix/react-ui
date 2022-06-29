@@ -13,7 +13,7 @@ interface _ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     element: ElementType;
   };
   disabled?: boolean;
-  buttonVariant?: 'solid';
+  buttonVariant?: 'solid' | 'outline';
   buttonColor?: Colors;
 }
 
