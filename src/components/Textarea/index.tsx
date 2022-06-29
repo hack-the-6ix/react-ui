@@ -24,7 +24,6 @@ function Textarea({
   ...props
 }: TextareaProps) {
   const count = countWords(props.value);
-  console.log(count)
 
   const overLimit = limit ? count > limit : false;
 
