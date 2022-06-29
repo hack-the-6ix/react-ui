@@ -1,0 +1,38 @@
+@use '../../styles/colors.module';
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-column-gap: 1.5rem;
+  align-items: center;
+
+  padding: 1rem 1.5rem;
+  border-radius: 1.25rem;
+  cursor: pointer;
+
+  background: colors.getColor('primary-2');
+
+  &:hover,
+  &.hovering {
+    background: #9ddada;
+  }
+
+  &.disabled {
+    background: colors.getColor('disabled-light');
+    cursor: not-allowed;
+  }
+}
+
+.input {
+  display: none;
+}
+
+.underlined {
+  text-decoration: underline;
+}
+
+.icon {
+  width: 1.4375rem;
+  height: 1.75rem;
+  grid-row: 1 / 3;
+}

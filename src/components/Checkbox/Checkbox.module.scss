@@ -1,0 +1,55 @@
+@use '../../styles/colors.module';
+@use '../../styles/mixins.module';
+
+.container {
+  grid-template-columns: 1.5rem auto;
+  grid-gap: 1.5rem;
+  cursor: pointer;
+  display: grid;
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
+
+.input {
+  opacity: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+
+  &:not(:disabled) {
+    &:hover ~ .checkbox,
+    &:focus ~ .checkbox {
+      opacity: 0.2;
+    }
+
+    &:active ~ .checkbox {
+      opacity: 0.3;
+    }
+
+    &:checked ~ .checkbox {
+      opacity: 1;
+    }
+  }
+}
+
+.checkbox {
+  @include mixins.transition(opacity, fast);
+  position: absolute;
+  display: flex;
+  margin: auto;
+  width: 100%;
+  width: 100%;
+  opacity: 0;
+  inset: 0;
+}
+
+.box {
+  border: 1px solid currentColor;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  position: relative;
+  height: 1.5rem;
+}

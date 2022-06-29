@@ -50,6 +50,7 @@ $config: (
 );
 
 // Example config, change for the year
+// prettier-ignore
 @function _fonts($root: '/') {
   @return (
     (
