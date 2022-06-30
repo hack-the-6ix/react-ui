@@ -1,19 +1,16 @@
 import { InputLayout, InputLayoutProps, Typography } from '..';
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, TextareaHTMLAttributes } from 'react';
 import cx from 'classnames';
 import styles from './Textarea.module.scss';
-
 export interface TextareaProps
-  extends HTMLAttributes<HTMLTextAreaElement>,
-    Omit<InputLayoutProps, 'children' | 'status'> {
+  extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'name' | 'value'>,
+    Omit<InputLayoutProps, 'children'> {
   limit?: number;
   value?: string;
 }
 
 function countWords(str?: string) {
-  return str?.split(/\s+/)
-             .filter((c: string) => c != '')
-             .length ?? 0;
+  return str?.split(/\s+/).filter((c: string) => c != '').length ?? 0;
 }
 
 function Textarea({
@@ -24,7 +21,6 @@ function Textarea({
   ...props
 }: TextareaProps) {
   const count = countWords(props.value);
-
   const overLimit = limit ? count > limit : false;
 
   return (
@@ -40,7 +36,7 @@ function Textarea({
         {...props}
         className={cx(
           overLimit ? styles[`outline--error`] : styles[`outline--copy-dark`],
-          styles.field
+          styles.field,
         )}
         textType='paragraph1'
         as='textarea'
