@@ -7,11 +7,11 @@ import {
 import { AiFillFileAdd } from 'react-icons/ai';
 import cx from 'classnames';
 import { formatBytes } from '../../utils';
-import { Typography } from '..';
+import { InputLayout, InputLayoutProps, Typography } from '..';
 import styles from './FileUpload.module.scss';
 
 export interface FileUploadProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'accept' | 'value'> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'accept' | 'value' | 'children'>, InputLayoutProps {
   value?: FileList | null;
   disabled?: boolean;
   accept?: string[];
@@ -19,7 +19,7 @@ export interface FileUploadProps
 }
 
 const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
-  ({ accept = ['*'], className, disabled, onChange, value, ...props }, ref) => {
+  ({ accept = ['*'], className, disabled, onChange, hideLabel, label, status, value, ...props }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
     useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
 
@@ -31,13 +31,18 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
 
     const file = value?.item(0);
     return (
-      <div
+      <InputLayout
         className={cx(
           disabled && styles.disabled,
           file && styles.populated,
           styles.container,
           className,
         )}
+        required={props.required}
+        hideLabel={hideLabel}
+        name={props.name}
+        status={status}
+        label={label}
       >
         <input
           {...props}
@@ -68,7 +73,7 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
             </Typography>
           </div>
         )}
-      </div>
+      </InputLayout>
     );
   },
 );
