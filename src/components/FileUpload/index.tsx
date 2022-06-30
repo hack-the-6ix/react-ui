@@ -4,7 +4,10 @@ import cx from 'classnames';
 import styles from './FileUpload.module.scss';
 
 export interface FileUploadProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'accept'> {
+  extends Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    'onChange' | 'accept' | 'value'
+  > {
   accept: string[];
   disabled?: boolean;
   value?: File;
