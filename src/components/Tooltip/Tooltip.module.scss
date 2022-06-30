@@ -1,0 +1,32 @@
+@use '../../styles/colors.module';
+
+.tooltip {
+  position: absolute;
+  padding: 2rem;
+  border: 0.0625rem solid colors.getColor('grey');
+  background: white;
+}
+
+.position--top {
+  bottom: calc(100vh - var(--top));
+  left: var(--left);
+  margin-bottom: 1rem;
+}
+
+.position--left {
+  top: var(--top);
+  right: calc(100vw - var(--left));
+  margin-right: 1rem;
+}
+
+.position--bottom {
+  top: var(--bottom);
+  left: var(--left);
+  margin-top: 1rem;
+}
+
+.position--right {
+  top: var(--top);
+  left: var(--right);
+  margin-left: 1rem;
+}
