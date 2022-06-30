@@ -32,10 +32,7 @@ export default {
   },
 };
 
-
-export const DefaultStory = (args: TextareaProps) => (
-  <Textarea {...args} />
-);
+export const DefaultStory = (args: TextareaProps) => <Textarea {...args} />;
 
 DefaultStory.args = {
   label: 'This is a label uwu',

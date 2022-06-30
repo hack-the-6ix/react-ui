@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import FileUpload, { FileUploadProps } from '.';
 
 export default {
@@ -5,12 +6,13 @@ export default {
   component: FileUpload,
 };
 
-export const DefaultStory = (args: FileUploadProps) => <FileUpload {...args} />;
-
-DefaultStory.args = {
-  accept: ['.pdf'],
-  value: {
-    name: 'test_default_file.pdf',
-    size: 1024,
-  },
+export const DefaultStory = (args: FileUploadProps) => {
+  const [files, setFiles] = useState<FileList | null>(null);
+  return (
+    <FileUpload
+      {...args}
+      onChange={(e) => setFiles(e.currentTarget.files)}
+      value={files}
+    />
+  );
 };

@@ -11,9 +11,7 @@ export interface TextareaProps
 }
 
 function countWords(str?: string) {
-  return str?.split(/\s+/)
-             .filter((c: string) => c != '')
-             .length ?? 0;
+  return str?.split(/\s+/).filter((c: string) => c != '').length ?? 0;
 }
 
 function Textarea({
@@ -40,7 +38,7 @@ function Textarea({
         {...props}
         className={cx(
           overLimit ? styles[`outline--error`] : styles[`outline--copy-dark`],
-          styles.field
+          styles.field,
         )}
         textType='paragraph1'
         as='textarea'
