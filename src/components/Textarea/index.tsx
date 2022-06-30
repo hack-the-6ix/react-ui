@@ -30,7 +30,6 @@ function Textarea({
       className={className}
       name={props.name}
       label={label}
-      labelTextType='heading4'
     >
       <Typography
         {...props}
