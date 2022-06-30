@@ -1,5 +1,6 @@
 export { default as Button, ButtonProps } from './Button';
 export { default as Dropdown, DropdownProps } from './Dropdown';
+export { default as FileUpload, FileUploadProps } from './FileUpload';
 export { default as Input, InputProps } from './Input';
 export { default as InputLayout, InputLayoutProps } from './InputLayout';
 export { default as StyleProvider, StyleProviderProps } from './StyleProvider';
