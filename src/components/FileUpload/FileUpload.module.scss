@@ -16,14 +16,14 @@
   &:hover {
     background-color: colors.getColor(primary-2, hover);
   }
-}
 
-.disabled {
-  background-color: colors.getColor(disabled-light);
-  color: colors.getColor(grey);
-
-  &:hover {
+  .disabled & {
     background-color: colors.getColor(disabled-light);
+    color: colors.getColor(grey);
+  
+    &:hover {
+      background-color: colors.getColor(disabled-light);
+    }
   }
 }
 

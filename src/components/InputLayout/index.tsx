@@ -15,7 +15,6 @@ export interface InputLayoutProps {
     state: 'error' | 'success';
     text?: ReactNode;
   };
-  labelTextType?: TextTypes;
 }
 
 function InputLayout({
@@ -26,7 +25,6 @@ function InputLayout({
   children,
   name,
   required,
-  labelTextType = 'subheading',
   ...props
 }: InputLayoutProps) {
   return (
@@ -34,7 +32,7 @@ function InputLayout({
       <Typography
         className={cx(hideLabel && styles['hide-label'])}
         as='label'
-        textType={labelTextType}
+        textType='heading4'
         textColor='primary-3'
         htmlFor={name}
       >
@@ -46,7 +44,7 @@ function InputLayout({
         <Typography
           className={styles.status}
           as='span'
-          textType='subheading'
+          textType='paragraph2'
           textColor={status.state ?? 'grey'}
         >
           {status.text}

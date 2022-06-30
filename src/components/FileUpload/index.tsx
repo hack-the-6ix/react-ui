@@ -35,7 +35,6 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
         className={cx(
           disabled && styles.disabled,
           file && styles.populated,
-          styles.container,
           className,
         )}
         required={props.required}
@@ -44,35 +43,37 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
         status={status}
         label={label}
       >
-        <input
-          {...props}
-          accept={accept.join(', ')}
-          className={styles.input}
-          disabled={disabled}
-          onChange={onChange}
-          ref={inputRef}
-          type='file'
-        />
-        <AiFillFileAdd className={styles.icon} />
-        {file ? (
-          <div>
-            <Typography className={styles.label} textType='heading4' as='p'>
-              {file.name}
-            </Typography>
-            <Typography className={styles.text} textType='paragraph2' as='p'>
-              Size: {formatBytes(file.size).join(' ')}
-            </Typography>
-          </div>
-        ) : (
-          <div>
-            <Typography className={styles.label} textType='heading4' as='p'>
-              Drop files here or <span className={styles.linkLike}>Browse</span>
-            </Typography>
-            <Typography className={styles.text} textType='paragraph2' as='p'>
-              Accepted file format: {accept.join(', ')}
-            </Typography>
-          </div>
-        )}
+        <div className={styles.container}>
+          <input
+            {...props}
+            accept={accept.join(', ')}
+            className={styles.input}
+            disabled={disabled}
+            onChange={onChange}
+            ref={inputRef}
+            type='file'
+          />
+          <AiFillFileAdd className={styles.icon} />
+          {file ? (
+            <div>
+              <Typography className={styles.label} textType='heading4' as='p'>
+                {file.name}
+              </Typography>
+              <Typography className={styles.text} textType='paragraph2' as='p'>
+                Size: {formatBytes(file.size).join(' ')}
+              </Typography>
+            </div>
+          ) : (
+            <div>
+              <Typography className={styles.label} textType='heading4' as='p'>
+                Drop files here or <span className={styles.linkLike}>Browse</span>
+              </Typography>
+              <Typography className={styles.text} textType='paragraph2' as='p'>
+                Accepted file format: {accept.join(', ')}
+              </Typography>
+            </div>
+          )}
+        </div>
       </InputLayout>
     );
   },
