@@ -11,7 +11,7 @@ import { InputLayout, InputLayoutProps, Typography } from '..';
 import styles from './FileUpload.module.scss';
 
 export interface FileUploadProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'accept' | 'value' | 'children'>, InputLayoutProps {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'accept' | 'value' | 'children'>, Omit<InputLayoutProps, 'children'> {
   value?: FileList | null;
   disabled?: boolean;
   accept?: string[];
