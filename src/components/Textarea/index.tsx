@@ -18,7 +18,6 @@ function Textarea({
   label,
   className,
   limit,
-  rows,
   ...props
 }: TextareaProps) {
   const count = countWords(props.value);
