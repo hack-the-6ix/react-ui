@@ -1,11 +1,10 @@
 import { InputLayout, InputLayoutProps, Typography } from '..';
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, TextareaHTMLAttributes } from 'react';
 import cx from 'classnames';
 import styles from './Textarea.module.scss';
-
 export interface TextareaProps
-  extends HTMLAttributes<HTMLTextAreaElement>,
-    Omit<InputLayoutProps, 'children' | 'status'> {
+  extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'name' | 'value'>,
+    Omit<InputLayoutProps, 'children'> {
   limit?: number;
   value?: string;
 }
@@ -19,10 +18,10 @@ function Textarea({
   label,
   className,
   limit,
+  rows,
   ...props
 }: TextareaProps) {
   const count = countWords(props.value);
-
   const overLimit = limit ? count > limit : false;
 
   return (
