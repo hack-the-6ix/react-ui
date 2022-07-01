@@ -10,6 +10,6 @@
   display: none;
 }
 
-.status {
+.status, .label {
   @include mixins.transition(color);
 }

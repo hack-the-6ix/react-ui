@@ -8,6 +8,7 @@
 }
 
 .custom {
+  @include mixins.transition(border-color);
   border: 1px solid colors.getColor(primary-3);
   border-radius: 0.25rem;
   position: absolute;
@@ -51,6 +52,7 @@
 
 .button {
   @extend %trigger;
+  @include mixins.transition(background-color);
   background: colors.getColor(copy-light);
   grid-template-columns: auto 1rem;
   align-items: center;
@@ -59,6 +61,7 @@
 
   .disabled & {
     background-color: colors.getColor(disabled-light);
+    cursor: not-allowed;
   }
 }
 
@@ -67,7 +70,7 @@
 }
 
 .caret {
-  @include mixins.transition(transform);
+  @include mixins.transition(transform color);
   color: colors.getColor(primary-3);
   &.show {
     transform: rotate(180deg);

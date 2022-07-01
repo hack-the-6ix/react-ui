@@ -38,7 +38,7 @@ function InputLayout({
   return (
     <div {...props} className={cx(styles.container, className)}>
       <Typography
-        className={cx(hideLabel && styles['hide-label'])}
+        className={cx(hideLabel && styles['hide-label'], styles.label)}
         as='label'
         textType='heading4'
         textColor={textColor}

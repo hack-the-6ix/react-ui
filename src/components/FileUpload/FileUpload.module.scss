@@ -2,7 +2,7 @@
 @use '../../styles/colors.module';
 
 .container {
-  @include mixins.transition(background-color);
+  @include mixins.transition(background-color color);
   background-color: colors.getColor(primary-2);
   grid-template-columns: 1.75rem auto;
   color: colors.getColor(primary-3);
