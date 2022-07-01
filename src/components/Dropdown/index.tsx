@@ -1,62 +1,118 @@
-import { MouseEventHandler, ReactNode, useState } from 'react';
+import { SelectHTMLAttributes, useRef, useState } from 'react';
+import { AiFillCaretDown } from 'react-icons/ai';
 import cx from 'classnames';
-import { InputLayout, InputLayoutProps, Button } from '..';
-import DropdownMenu from './DropdownMenu';
+import InputLayout, { InputLayoutProps } from '../InputLayout';
+import Typography from '../Typography';
 import styles from './Dropdown.module.scss';
+import { useClickOutside } from '../../hooks';
 
-export interface DropdownItem {
-  label: ReactNode;
-  value: string | number;
-}
-
-export interface DropdownProps<OptionType extends DropdownItem = DropdownItem>
-  extends Omit<InputLayoutProps, 'children'> {
-  renderOption?: (option: OptionType, idx: number) => ReactNode;
-  onChange: MouseEventHandler<HTMLButtonElement>;
-  options: OptionType[];
-  placeholder: string;
-  usePortal?: boolean;
+export type DropdownOption = {
+  label: string;
   value: string;
+};
+
+export interface DropdownProps<T extends DropdownOption>
+  extends Omit<
+      SelectHTMLAttributes<HTMLSelectElement>,
+      'name' | 'children' | 'multiple'
+    >,
+    Omit<InputLayoutProps, 'children'> {
+  options: T[];
 }
 
-function Dropdown<OptionType extends DropdownItem>({
-  renderOption = (option: OptionType) => option.label,
+function Dropdown<T extends DropdownOption>({
+  className,
   placeholder,
-  usePortal,
-  onChange,
+  hideLabel,
+  status,
+  label,
   options,
-  value,
   ...props
-}: DropdownProps<OptionType>) {
-  const [showDropdown, setShowDropdown] = useState(false);
-  const selectedOption = options.find((option) => option.value === value);
+}: DropdownProps<T>) {
+  const selectedOption = options.find((option) => option.value === props.value);
+  const [showMenu, setShowMenu] = useState(false);
+  const selectRef = useRef<HTMLSelectElement>(null);
+  const parentRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(
+    parentRef,
+    () => {
+      setShowMenu(false);
+    },
+    !showMenu,
+  );
 
   return (
-    <InputLayout {...props}>
-      <div className={styles.trigger}>
-        <select className={styles.select} defaultValue=''>
-          <option disabled hidden value=''>
-            {placeholder}
-          </option>
-          {options.map((option, key) => (
-            <option value={option.value} key={key}>
-              {option.label}
+    <InputLayout
+      required={props.required}
+      disabled={props.disabled}
+      hideLabel={hideLabel}
+      className={className}
+      name={props.name}
+      status={status}
+      label={label}
+    >
+      <div ref={parentRef} className={styles.container}>
+        <Typography
+          {...props}
+          textType='paragraph1'
+          className={styles.select}
+          ref={selectRef}
+          as='select'
+        >
+          {placeholder && (
+            <option selected disabled hidden>
+              {placeholder}
             </option>
+          )}
+          {options.map((optionProps, key) => (
+            <option {...optionProps} key={key} />
           ))}
-        </select>
-        <Button onClick={() => setShowDropdown(!showDropdown)} tabIndex={-1}>
-          {selectedOption?.label ?? placeholder}
-        </Button>
+        </Typography>
+        <div className={cx(styles.custom, props.disabled && styles.disabled)}>
+          <Typography
+            onClick={() => setShowMenu(!showMenu)}
+            className={styles.button}
+            disabled={props.disabled}
+            textType='paragraph1'
+            tabIndex={-1}
+            type='button'
+            as='button'
+          >
+            <span className={cx(selectedOption || styles.placeholder)}>
+              {selectedOption?.label ?? placeholder ?? 'Select an option'}
+            </span>
+            <AiFillCaretDown
+              className={cx(showMenu && styles.show, styles.caret)}
+            />
+          </Typography>
+          <ul className={cx(showMenu && styles.show, styles.menu)}>
+            {options.map((option, key) => (
+              <li key={key}>
+                <Typography
+                  tabIndex={showMenu ? undefined : -1}
+                  onClick={() => {
+                    if (!selectRef.current) return;
+                    selectRef.current.value = option.value;
+                    selectRef.current.dispatchEvent(
+                      new Event('change', { bubbles: true }),
+                    );
+                  }}
+                  textType='paragraph1'
+                  className={cx(
+                    selectedOption === option && styles.selected,
+                    styles.item,
+                  )}
+                  as='button'
+                  type='button'
+                >
+                  {option.label}
+                </Typography>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      {showDropdown && (
-        <DropdownMenu
-          className={cx(usePortal && styles.portalMenu)}
-          renderOption={renderOption}
-          usePortal={usePortal}
-          onChange={onChange}
-          options={options}
-        />
-      )}
     </InputLayout>
   );
 }

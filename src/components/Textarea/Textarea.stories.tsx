@@ -14,6 +14,11 @@ export default {
         disable: true,
       },
     },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
     hideLabel: {
       control: {
         type: 'boolean',

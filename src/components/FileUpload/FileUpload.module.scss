@@ -20,7 +20,7 @@
   .disabled & {
     background-color: colors.getColor(disabled-light);
     color: colors.getColor(grey);
-  
+
     &:hover {
       background-color: colors.getColor(disabled-light);
     }

@@ -1,17 +1,113 @@
-.trigger {
+@use '../../styles/colors.module';
+@use '../../styles/mixins.module';
+
+.container {
   position: relative;
+  overflow: visible;
+  display: flex;
+}
+
+.custom {
+  border: 1px solid colors.getColor(primary-3);
+  border-radius: 0.25rem;
+  position: absolute;
+  width: 100%;
+
+  &.disabled {
+    border-color: colors.getColor(grey);
+  }
+}
+
+%trigger {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  text-align: start;
+  background: none;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .select {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  inset: 0;
+  @extend %trigger;
+  color: transparent;
+  opacity: 0;
 
-  @media (hover: hover) {
-    &:not(:focus) {
-      pointer-events: none;
-      opacity: 0;
-    }
+  @media (pointer: none) {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  &:focus {
+    opacity: 1;
+    z-index: 2;
+  }
+}
+
+.button {
+  @extend %trigger;
+  background: colors.getColor(copy-light);
+  grid-template-columns: auto 1rem;
+  align-items: center;
+  grid-gap: 0.75rem;
+  display: grid;
+
+  .disabled & {
+    background-color: colors.getColor(disabled-light);
+  }
+}
+
+.placeholder {
+  color: colors.getColor(grey);
+}
+
+.caret {
+  @include mixins.transition(transform);
+  color: colors.getColor(primary-3);
+  &.show {
+    transform: rotate(180deg);
+  }
+
+  .disabled & {
+    color: colors.getColor(grey);
+  }
+}
+
+.menu {
+  @include mixins.transition(max-height);
+  list-style-type: none;
+  border-top: none;
+  overflow: auto;
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+
+  &.show {
+    max-height: 10rem;
+  }
+}
+
+.item {
+  @include mixins.transition(background-color);
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  background: none;
+  text-align: start;
+  border: none;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    background-color: colors.getColor(copy-dark, $alpha: 0.06);
+  }
+
+  &:active,
+  &.selected {
+    background-color: colors.getColor(copy-dark, $alpha: 0.12);
   }
 }

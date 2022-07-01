@@ -9,6 +9,7 @@ export interface InputLayoutProps {
   hideLabel?: boolean;
   required?: boolean;
   className?: string;
+  disabled?: boolean;
   label: string;
   name: string;
   status?: {
@@ -23,17 +24,24 @@ function InputLayout({
   label,
   status,
   children,
+  disabled,
   name,
   required,
   ...props
 }: InputLayoutProps) {
+  let textColor = 'primary-3';
+  if (disabled) {
+    textColor = 'grey';
+  } else if (status?.state === 'error') {
+    textColor = 'error';
+  }
   return (
     <div {...props} className={cx(styles.container, className)}>
       <Typography
         className={cx(hideLabel && styles['hide-label'])}
         as='label'
         textType='heading4'
-        textColor='primary-3'
+        textColor={textColor}
         htmlFor={name}
       >
         {label}

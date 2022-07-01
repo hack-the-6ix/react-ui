@@ -1,18 +1,23 @@
 @use '../../styles/colors.module';
 @use '../../styles/mixins.module';
 
+.outline {
+  @each $color, $_ in colors.$config {
+    &--#{$color} {
+      border-color: colors.getColor($color);
+    }
+  }
+}
+
 .input {
   @include mixins.transition(border-color);
   padding: 0.5rem 0.75rem;
   border-radius: 0.375rem;
   border-style: solid;
   border-width: 1px;
-}
 
-.outline {
-  @each $color, $_ in colors.$config {
-    &--#{$color} {
-      border-color: colors.getColor($color);
-    }
+  &:disabled {
+    border-color: colors.getColor(disabled-dark);
+    cursor: not-allowed;
   }
 }

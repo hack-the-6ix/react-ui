@@ -35,6 +35,7 @@ function Input({
       required={props.required}
       className={className}
       hideLabel={hideLabel}
+      disabled={props.disabled}
       status={status}
       label={label}
       name={name}

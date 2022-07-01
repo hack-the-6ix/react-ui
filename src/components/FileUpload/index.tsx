@@ -11,7 +11,11 @@ import { InputLayout, InputLayoutProps, Typography } from '..';
 import styles from './FileUpload.module.scss';
 
 export interface FileUploadProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'accept' | 'value' | 'children'>, Omit<InputLayoutProps, 'children'> {
+  extends Omit<
+      InputHTMLAttributes<HTMLInputElement>,
+      'accept' | 'value' | 'children'
+    >,
+    Omit<InputLayoutProps, 'children'> {
   value?: FileList | null;
   disabled?: boolean;
   accept?: string[];
@@ -19,7 +23,20 @@ export interface FileUploadProps
 }
 
 const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
-  ({ accept = ['*'], className, disabled, onChange, hideLabel, label, status, value, ...props }, ref) => {
+  (
+    {
+      accept = ['*'],
+      className,
+      disabled,
+      onChange,
+      hideLabel,
+      label,
+      status,
+      value,
+      ...props
+    },
+    ref,
+  ) => {
     const inputRef = useRef<HTMLInputElement>(null);
     useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
 
@@ -37,6 +54,7 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
           file && styles.populated,
           className,
         )}
+        disabled={disabled}
         required={props.required}
         hideLabel={hideLabel}
         name={props.name}
@@ -66,7 +84,8 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
           ) : (
             <div>
               <Typography className={styles.label} textType='heading4' as='p'>
-                Drop files here or <span className={styles.linkLike}>Browse</span>
+                Drop files here or{' '}
+                <span className={styles.linkLike}>Browse</span>
               </Typography>
               <Typography className={styles.text} textType='paragraph2' as='p'>
                 Accepted file format: {accept.join(', ')}

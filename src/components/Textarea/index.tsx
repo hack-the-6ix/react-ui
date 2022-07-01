@@ -28,6 +28,7 @@ function Textarea({
       required={props.required}
       hideLabel={hideLabel}
       className={className}
+      disabled={props.disabled}
       name={props.name}
       label={label}
     >
