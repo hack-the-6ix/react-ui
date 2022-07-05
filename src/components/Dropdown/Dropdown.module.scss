@@ -83,6 +83,7 @@
 
 .menu {
   @include mixins.transition(max-height);
+  background: colors.getColor(copy-light);
   list-style-type: none;
   border-top: none;
   overflow: auto;
