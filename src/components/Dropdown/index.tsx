@@ -1,10 +1,11 @@
-import { SelectHTMLAttributes, useRef, useState } from 'react';
+import { SelectHTMLAttributes, useEffect, useRef, useState } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
 import cx from 'classnames';
 import InputLayout, { InputLayoutProps } from '../InputLayout';
 import Typography from '../Typography';
 import styles from './Dropdown.module.scss';
 import { useClickOutside } from '../../hooks';
+import { Speeds } from '../../styles';
 
 export type DropdownOption = {
   label: string;
@@ -30,9 +31,18 @@ function Dropdown<T extends DropdownOption>({
   ...props
 }: DropdownProps<T>) {
   const selectedOption = options.find((option) => option.value === props.value);
+  const [delayedShow, setDelayedShow] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const selectRef = useRef<HTMLSelectElement>(null);
   const parentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const action = () => setDelayedShow(showMenu);
+    if (showMenu) return action();
+
+    const timer = window.setTimeout(action, Speeds.NORMAL);
+    return () => window.clearTimeout(timer);
+  }, [ showMenu ]);
 
   useClickOutside(
     parentRef,
@@ -52,7 +62,7 @@ function Dropdown<T extends DropdownOption>({
       status={status}
       label={label}
     >
-      <div ref={parentRef} className={styles.container}>
+      <div ref={parentRef} className={cx(styles.container, delayedShow && styles.show)}>
         <Typography
           {...props}
           textType='paragraph1'

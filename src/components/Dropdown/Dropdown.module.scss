@@ -5,6 +5,10 @@
   position: relative;
   overflow: visible;
   display: flex;
+
+  &.show {
+    z-index: 1;
+  }
 }
 
 .custom {
