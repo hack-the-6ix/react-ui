@@ -1,5 +1,4 @@
 import Checkbox, { CheckboxProps } from '.';
-import { Typography } from '..';
 
 export default {
   title: 'Components/Checkbox',
