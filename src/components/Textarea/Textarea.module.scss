@@ -17,6 +17,14 @@
   border-width: 1px;
   resize: vertical;
 
+  &.success {
+    border-color: colors.getColor(success);
+  }
+
+  &.error {
+    border-color: colors.getColor(error);
+  }
+
   &:disabled {
     border-color: colors.getColor(disabled-dark);
   }

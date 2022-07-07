@@ -42,7 +42,7 @@ function Dropdown<T extends DropdownOption>({
 
     const timer = window.setTimeout(action, Speeds.NORMAL);
     return () => window.clearTimeout(timer);
-  }, [ showMenu ]);
+  }, [showMenu]);
 
   useClickOutside(
     parentRef,
@@ -62,7 +62,10 @@ function Dropdown<T extends DropdownOption>({
       status={status}
       label={label}
     >
-      <div ref={parentRef} className={cx(styles.container, delayedShow && styles.show)}>
+      <div
+        ref={parentRef}
+        className={cx(styles.container, delayedShow && styles.show)}
+      >
         <Typography
           {...props}
           textType='paragraph1'
@@ -79,7 +82,13 @@ function Dropdown<T extends DropdownOption>({
             <option {...optionProps} key={key} />
           ))}
         </Typography>
-        <div className={cx(styles.custom, props.disabled && styles.disabled)}>
+        <div
+          className={cx(
+            styles.custom,
+            props.disabled && styles.disabled,
+            status && styles[status.state],
+          )}
+        >
           <Typography
             onClick={() => setShowMenu(!showMenu)}
             className={styles.button}

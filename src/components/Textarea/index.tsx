@@ -1,5 +1,5 @@
 import { InputLayout, InputLayoutProps, Typography } from '..';
-import { HTMLAttributes, TextareaHTMLAttributes } from 'react';
+import { TextareaHTMLAttributes } from 'react';
 import cx from 'classnames';
 import styles from './Textarea.module.scss';
 export interface TextareaProps
@@ -17,6 +17,7 @@ function Textarea({
   hideLabel,
   label,
   className,
+  status,
   limit,
   ...props
 }: TextareaProps) {
@@ -30,18 +31,20 @@ function Textarea({
       className={className}
       disabled={props.disabled}
       name={props.name}
+      status={status}
       label={label}
     >
       <Typography
         {...props}
         className={cx(
           overLimit ? styles[`outline--error`] : styles[`outline--copy-dark`],
+          status && styles[status.state],
           styles.field,
         )}
         textType='paragraph1'
         as='textarea'
       />
-      {limit && (
+      {limit && !status?.text && (
         <Typography
           textColor={overLimit ? 'error' : 'disabled-dark'}
           className={styles.text}

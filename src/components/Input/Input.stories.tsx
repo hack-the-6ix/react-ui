@@ -24,32 +24,10 @@ export default {
         type: 'boolean',
       },
     },
-    statusState: {
-      control: {
-        type: 'radio',
-        options: ['error', 'success'],
-      },
-    },
-    statusText: {
-      control: {
-        type: 'text',
-      },
-    },
   },
 };
 
-interface StoryProps extends InputProps {
-  statusState: 'error' | 'success';
-  statusText: string;
-}
-
-export const DefaultStory = ({
-  statusState,
-  statusText,
-  ...args
-}: StoryProps) => (
-  <Input {...args} status={{ state: statusState, text: statusText }} />
-);
+export const DefaultStory = (args: InputProps) => <Input {...args} />;
 DefaultStory.args = {
   label: 'This is a label uwu',
 };

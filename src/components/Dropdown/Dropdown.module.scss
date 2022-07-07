@@ -13,10 +13,18 @@
 
 .custom {
   @include mixins.transition(border-color);
-  border: 1px solid colors.getColor(primary-3);
+  border: 2px solid colors.getColor(primary-3);
   border-radius: 0.25rem;
   position: absolute;
   width: 100%;
+
+  &.error {
+    border-color: colors.getColor(error);
+  }
+
+  &.success {
+    border-color: colors.getColor(success);
+  }
 
   &.disabled {
     border-color: colors.getColor(grey);

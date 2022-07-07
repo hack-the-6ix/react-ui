@@ -32,8 +32,8 @@ function InputLayout({
   let textColor = 'primary-3';
   if (disabled) {
     textColor = 'grey';
-  } else if (status?.state === 'error') {
-    textColor = 'error';
+  } else if (status?.state) {
+    textColor = status?.state;
   }
   return (
     <div {...props} className={cx(styles.container, className)}>

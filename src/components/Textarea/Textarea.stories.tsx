@@ -9,11 +9,6 @@ export default {
         disable: true,
       },
     },
-    status: {
-      control: {
-        disable: true,
-      },
-    },
     disabled: {
       control: {
         type: 'boolean',
