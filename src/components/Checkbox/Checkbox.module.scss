@@ -2,6 +2,7 @@
 @use '../../styles/mixins.module';
 
 .container {
+  @include mixins.transition(color, fast);
   grid-template-columns: 1.5rem auto;
   grid-gap: 1.5rem;
   cursor: pointer;
