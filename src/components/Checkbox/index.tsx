@@ -5,6 +5,7 @@ import styles from './Checkbox.module.scss';
 import { Colors } from '../../styles';
 
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
+  checkboxType?: 'radio' | 'checkbox';
   label?: ReactNode;
   color?: Colors;
   name: string;
@@ -18,6 +19,7 @@ function Checkbox({
   /** The color of the checkbox **/
   color = 'primary-1',
   /** Label appearing to the right of the checkbox **/
+  checkboxType,
   label,
   name,
   className,
@@ -38,7 +40,7 @@ function Checkbox({
           {...props}
           disabled={disabled}
           name={name}
-          type='checkbox'
+          type={checkboxType}
           className={styles.input}
         />
         <svg
