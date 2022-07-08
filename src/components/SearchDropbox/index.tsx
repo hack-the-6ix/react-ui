@@ -102,6 +102,10 @@ function SearchDropdown<T extends DropdownOption>({
                         ...inputRef.current,
                         value: option.value,
                       },
+                      target: {
+                        ...inputRef.current,
+                        value: option.value,
+                      },
                     } as any);
                   }}
                   disabled={props.disabled}
