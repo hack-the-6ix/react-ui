@@ -19,7 +19,7 @@ function Checkbox({
   /** The color of the checkbox **/
   color = 'primary-1',
   /** Label appearing to the right of the checkbox **/
-  checkboxType,
+  checkboxType = 'checkbox',
   label,
   name,
   className,
