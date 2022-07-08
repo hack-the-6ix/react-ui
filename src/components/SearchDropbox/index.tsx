@@ -23,7 +23,6 @@ export interface SearchDropdownProps<T extends DropdownOption>
 
 function SearchDropdown<T extends DropdownOption>({
   className,
-  placeholder,
   hideLabel,
   status,
   label,
