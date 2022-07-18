@@ -49,14 +49,16 @@
 .select {
   @extend %trigger;
   color: transparent;
+  appearance: none;
   opacity: 0;
 
-  @media (pointer: none) {
+  @media (pointer: coarse) {
     opacity: 1;
     z-index: 2;
   }
 
   &:focus {
+    outline: none;
     opacity: 1;
     z-index: 2;
   }
