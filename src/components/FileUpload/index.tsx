@@ -16,7 +16,7 @@ export interface FileUploadProps
       'accept' | 'value' | 'children'
     >,
     Omit<InputLayoutProps, 'children'> {
-  value?: FileList | null;
+  value?: FileList | string | null;
   disabled?: boolean;
   accept?: string[];
   name: string;
@@ -39,14 +39,15 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
     useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
+    const isString = typeof value === 'string';
 
-    if (inputRef.current && value && value !== inputRef.current.files) {
+    if (!isString && inputRef.current && value && value !== inputRef.current.files) {
       console.warn(
         'FileInput and value is unsynced. This may inconsistencies between state and UI',
       );
     }
 
-    const file = value?.item(0);
+    const file = isString ? value : value?.item?.(0);
     return (
       <InputLayout
         className={cx(
@@ -75,10 +76,10 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
           {file ? (
             <div>
               <Typography className={styles.label} textType='heading4' as='p'>
-                {file.name}
+                {isString ? file : file.name}
               </Typography>
               <Typography className={styles.text} textType='paragraph2' as='p'>
-                Size: {formatBytes(file.size).join(' ')}
+                Accepted file format: {accept.join(', ')}
               </Typography>
             </div>
           ) : (
