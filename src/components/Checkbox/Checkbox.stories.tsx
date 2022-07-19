@@ -11,6 +11,11 @@ export default {
         type: 'text',
       },
     },
+    checked: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 };
 

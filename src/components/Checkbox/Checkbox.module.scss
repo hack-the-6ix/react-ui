@@ -29,10 +29,10 @@
     &:active ~ .checkbox {
       opacity: 0.3;
     }
+  }
 
-    &:checked ~ .checkbox {
-      opacity: 1;
-    }
+  &:checked ~ .checkbox {
+    opacity: 1;
   }
 }
 
