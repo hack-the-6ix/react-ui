@@ -38,6 +38,7 @@ function Checkbox({
       <div className={styles.box}>
         <input
           {...props}
+          checked={props.checked ?? Boolean(props.value)}
           disabled={disabled}
           name={name}
           type={checkboxType}
