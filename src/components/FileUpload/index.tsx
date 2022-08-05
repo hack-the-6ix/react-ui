@@ -81,7 +81,7 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
           {file ? (
             <div>
               <Typography className={styles.label} textType='heading4' as='p'>
-                {isString ? file : file.name}
+                {isString ? file : (file as File).name}
               </Typography>
               <Typography className={styles.text} textType='paragraph2' as='p'>
                 Accepted file format: {accept.join(', ')}
