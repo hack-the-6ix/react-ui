@@ -20,7 +20,7 @@
   height: 100%;
   margin: 0;
 
-  &:not(:disabled) {
+  &:not(:disabled):not(:checked) {
     &:hover ~ .checkbox,
     &:focus ~ .checkbox {
       opacity: 0.2;
@@ -37,7 +37,7 @@
 }
 
 .checkbox {
-  @include mixins.transition(opacity, fast);
+  @include mixins.transition(opacity color, fast);
   position: absolute;
   display: flex;
   margin: auto;
@@ -53,4 +53,18 @@
   box-sizing: border-box;
   position: relative;
   height: 1.5rem;
+
+  @each $tag, $_ in colors.$config {
+    &--#{$tag} {
+      color: colors.getColor($tag);
+      &:hover,
+      &:focus {
+        color: colors.getColor($tag, hover);
+      }
+
+      &:active {
+        color: colors.getColor($tag, active);
+      }
+    }
+  }
 }

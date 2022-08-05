@@ -35,7 +35,7 @@ function Checkbox({
       textColor={disabled ? 'disabled-dark' : status?.state ?? color}
       className={cx(styles.container, disabled && styles.disabled, className)}
     >
-      <div className={styles.box}>
+      <div className={cx(styles.box, color && styles[`box--${color}`])}>
         <input
           {...props}
           checked={props.checked ?? Boolean(props.value)}

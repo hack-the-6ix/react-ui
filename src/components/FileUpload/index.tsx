@@ -41,7 +41,12 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
     useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
     const isString = typeof value === 'string';
 
-    if (!isString && inputRef.current && value && value !== inputRef.current.files) {
+    if (
+      !isString &&
+      inputRef.current &&
+      value &&
+      value !== inputRef.current.files
+    ) {
       console.warn(
         'FileInput and value is unsynced. This may inconsistencies between state and UI',
       );
