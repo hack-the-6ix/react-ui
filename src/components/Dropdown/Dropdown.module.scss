@@ -19,7 +19,7 @@
   width: 100%;
 
   &.error {
-    border-color: colors.getColor(error);
+    border-color: colors.getColor(error-500);
   }
 
   &.success {

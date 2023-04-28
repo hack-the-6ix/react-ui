@@ -22,7 +22,7 @@
   }
 
   &.error {
-    border-color: colors.getColor(error);
+    border-color: colors.getColor(error-500);
   }
 
   &:disabled {

@@ -20,6 +20,6 @@ export default {
 export const DefaultStory = (args: ButtonProps) => <Button {...args} />;
 DefaultStory.args = {
   children: 'Sample text uwu',
-  buttonColor: 'primary-1',
+  buttonColor: 'primary-500',
   buttonVariant: 'solid',
 };

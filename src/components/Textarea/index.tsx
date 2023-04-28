@@ -46,7 +46,7 @@ function Textarea({
       />
       {limit && !status?.text && (
         <Typography
-          textColor={overLimit ? 'error' : 'disabled-dark'}
+          textColor={overLimit ? 'error-500' : 'disabled-dark'}
           className={styles.text}
           textType='paragraph1'
         >
