@@ -21,7 +21,7 @@ export type ButtonProps = ComponentWithAs<_ButtonProps>;
 
 function Button({
   /** Color of the button */
-  buttonColor = 'primary-1',
+  buttonColor = 'primary-500',
   /** Type of button */
   buttonVariant = 'solid',
   className,

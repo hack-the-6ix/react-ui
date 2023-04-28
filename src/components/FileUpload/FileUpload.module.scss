@@ -3,9 +3,9 @@
 
 .container {
   @include mixins.transition(background-color color);
-  background-color: colors.getColor(primary-2);
+  background-color: colors.getColor(primary-50);
   grid-template-columns: 1.75rem auto;
-  color: colors.getColor(primary-3);
+  color: colors.getColor(primary-700);
   border-radius: 1.25rem;
   padding: 1rem 1.5rem;
   align-items: center;
@@ -14,7 +14,7 @@
   display: grid;
 
   &:hover {
-    background-color: colors.getColor(primary-2, hover);
+    background-color: colors.getColor(primary-50, hover);
   }
 
   .disabled & {
@@ -49,7 +49,7 @@
 
 .linkLike {
   @include mixins.transition(color);
-  color: colors.getColor(primary-1);
+  color: colors.getColor(primary-500);
   text-decoration: underline;
   .disabled & {
     color: colors.getColor(grey);

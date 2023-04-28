@@ -17,7 +17,7 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 
 function Checkbox({
   /** The color of the checkbox **/
-  color = 'primary-1',
+  color = 'primary-500',
   /** Label appearing to the right of the checkbox **/
   checkboxType = 'checkbox',
   label,

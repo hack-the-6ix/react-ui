@@ -1,53 +1,92 @@
 $config: (
-  // Teal
-  primary-1:
+  // Neutrals
+  neutral-50:
     (
-      color: #23b5af,
+      color: #F3F6F6
     ),
-  // Light blue
-  primary-2:
+  neutral-100:
     (
-      color: #def9f9,
+      color: #E2E7E7
     ),
-  // Navy
-  primary-3:
+  neutral-200:
     (
-      color: #08566b,
+      color: #D0D9D9
     ),
-  // Light Yellow
-  primary-4:
+  neutral-300:
     (
-      color: #ffe299,
+      color: #BECBCB
     ),
-  // Peach
-  primary-5:
+  neutral-400:
     (
-      color: #ce9489,
+      color: #ACBCBC
     ),
-  // Sky Blue
-  secondary-1:
+  neutral-500:
     (
-      color: #bdf2fe,
+      color: #89A0A0
     ),
-  // Orange
-  secondary-2:
+  neutral-600:
     (
-      color: #fcaf55,
+      color: #637B7B
     ),
-  // Bronze
-  secondary-3:
+  neutral-700:
     (
-      color: #d9a56b,
+      color: #425252
     ),
-  // Strawberry
-  secondary-4:
+  neutral-800:
     (
-      color: #ca6969,
+      color: #323E3E
     ),
-  // Light Purple
-  secondary-5:
+  neutral-900:
     (
-      color: #d6cfe2,
+      color: #212929
+    ),
+  primary-50:
+    (
+      color: #E6FAF9
+    ),
+  primary-200:
+    (
+      color: #A9EEEB
+    ),
+  primary-500:
+    (
+      color: #00948C
+    ),
+  primary-600:
+    (
+      color: #00887E
+    ),
+  primary-700:
+    (
+      color: #00786D
+    ),
+  warning-50:
+    (
+      color: #FFFBEB
+    ),
+  warning-200:
+    (
+      color: #FDE68A
+    ),
+  warning-400:
+    (
+      color: #FBBF24
+    ),
+  error-500:
+    (
+      color: #EF4444
+    ),
+  error-600:
+    (
+      color: #DC2626
+    ),
+  shades-0:
+    (
+      color: #FFFFFF
+    ),
+  shades-100:
+    (
+      color: #000000
     ),
   'grey': (
     color: #757575,
@@ -60,9 +99,6 @@ $config: (
   ),
   success: (
     color: #0f893b,
-  ),
-  error: (
-    color: #af0029,
   ),
   disabled-light: (
     color: #f7f8f9,
