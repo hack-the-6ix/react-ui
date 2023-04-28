@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import cx from 'classnames';
 import { Typography } from '..';
 import styles from './InputLayout.module.scss';
-import { TextTypes } from '../../styles';
 
 export interface InputLayoutProps {
   children: ReactNode;
@@ -29,7 +28,7 @@ function InputLayout({
   required,
   ...props
 }: InputLayoutProps) {
-  let textColor = 'primary-3';
+  let textColor = 'primary-700';
   if (disabled) {
     textColor = 'grey';
   } else if (status?.state) {

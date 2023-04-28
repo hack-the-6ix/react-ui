@@ -28,7 +28,7 @@ function Input({
   name,
   ...props
 }: InputProps) {
-  if (status?.state) outlineColor = status?.state;
+  if (status?.state) outlineColor = (status?.state === 'error' ? 'error-500' : 'success');
   return (
     <InputLayout
       required={props.required}

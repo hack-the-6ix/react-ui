@@ -13,7 +13,7 @@
 
 .custom {
   @include mixins.transition(border-color);
-  border: 2px solid colors.getColor(primary-3);
+  border: 2px solid colors.getColor(primary-700);
   border-radius: 0.25rem;
   position: absolute;
   width: 100%;
@@ -85,7 +85,7 @@
 
 .caret {
   @include mixins.transition(transform color);
-  color: colors.getColor(primary-3);
+  color: colors.getColor(primary-700);
   &.show {
     transform: rotate(180deg);
   }
