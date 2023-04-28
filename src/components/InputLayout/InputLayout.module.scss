@@ -1,3 +1,4 @@
+@use '../../styles/colors.module';
 @use '../../styles/mixins.module';
 
 .container {
@@ -13,4 +14,8 @@
 .status,
 .label {
   @include mixins.transition(color);
+}
+
+.required-star {
+  color: colors.getColor(error-600);
 }

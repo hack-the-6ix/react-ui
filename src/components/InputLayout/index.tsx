@@ -44,7 +44,7 @@ function InputLayout({
         htmlFor={name}
       >
         {label}
-        {required ? '*' : ''}
+        {required ? <span className={cx(styles['required-star'])}> *</span> : ''}
       </Typography>
       {children}
       {status?.text && (
