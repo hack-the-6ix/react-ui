@@ -21,4 +21,8 @@
     border-color: colors.getColor(disabled-dark);
     cursor: not-allowed;
   }
+
+  &:hover {
+    border-color: colors.getColor(neutral-300);
+  }
 }
