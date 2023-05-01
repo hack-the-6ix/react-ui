@@ -24,7 +24,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 function Input({
-  outlineColor = 'grey',
+  outlineColor = 'shades-0',
   className,
   hideLabel,
   status,

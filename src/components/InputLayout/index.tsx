@@ -32,9 +32,10 @@ function InputLayout({
   hideAssistiveText,
   ...props
 }: InputLayoutProps) {
-  let textColor = 'primary-700';
+  let textColor = 'neutral-50';
   if (disabled) {
-    textColor = 'grey';
+    // TODO: 'neutral-50' with 38% opacity for Disabled State on entire component
+    textColor = 'neutral-50';
   } else if (status?.state) {
     textColor = status?.state;
   }
@@ -43,7 +44,7 @@ function InputLayout({
       <Typography
         className={cx(hideLabel && styles['hide-label'], styles.label)}
         as='label'
-        textType='heading4'
+        textType='paragraph2'
         textColor={textColor}
         htmlFor={name}
       >
@@ -56,7 +57,7 @@ function InputLayout({
           className={styles.status}
           as='span'
           textType='paragraph2'
-          textColor={status.state ?? 'grey'}
+          textColor={status.state ?? 'neutral-900'}
         >
           {status.text}
         </Typography>
@@ -65,7 +66,7 @@ function InputLayout({
         className={cx(hideAssistiveText && styles['hide-assistive-text'], styles.assistiveText)}
         as='assistiveText'
         textType='paragraph3'
-        textColor='neutral-900'
+        textColor='neutral-50'
         htmlFor={name}
       >
         {assistiveText}

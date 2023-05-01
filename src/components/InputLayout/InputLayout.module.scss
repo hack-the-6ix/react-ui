@@ -17,6 +17,10 @@
   @include mixins.transition(color);
 }
 
+.label {
+  margin-left: 0.75rem;
+}
+
 .required-star {
   color: colors.getColor(error-600);
 }
