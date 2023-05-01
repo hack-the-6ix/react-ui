@@ -22,4 +22,17 @@
     border-color: colors.getColor(neutral-50);
     cursor: not-allowed;
   }
+
+  &:hover {
+    border-color: colors.getColor(neutral-300);
+  }
+  
+  &:active {
+    border-color: colors.getColor(primary-500);
+  }
+  
+  &:focus {
+    border-color: colors.getColor(primary-500);
+    caret-color: colors.getColor(neutral-400);
+  }
 }
