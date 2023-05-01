@@ -17,6 +17,10 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: InputLayoutProps['name'];
   /** The name of the class */
   className?: string;
+  /** Assistive/Descriptive Text below input field **/
+  assistiveText: InputLayoutProps['assistiveText'];
+  /** Hides Assistive/Descriptive Text of input (Only visually) */
+  hideAssistiveText?: InputLayoutProps['hideAssistiveText'];
 }
 
 function Input({
@@ -26,6 +30,8 @@ function Input({
   status,
   label,
   name,
+  assistiveText,
+  hideAssistiveText,
   ...props
 }: InputProps) {
   if (status?.state) outlineColor = (status?.state === 'error' ? 'error-500' : 'success');
@@ -38,6 +44,8 @@ function Input({
       status={status}
       label={label}
       name={name}
+      assistiveText={assistiveText}
+      hideAssistiveText={hideAssistiveText}
     >
       <Typography
         textType='paragraph2'

@@ -15,6 +15,8 @@ export interface InputLayoutProps {
     state: 'error' | 'success';
     text?: ReactNode;
   };
+  assistiveText: string;
+  hideAssistiveText?: boolean;
 }
 
 function InputLayout({
@@ -26,6 +28,8 @@ function InputLayout({
   disabled,
   name,
   required,
+  assistiveText,
+  hideAssistiveText,
   ...props
 }: InputLayoutProps) {
   let textColor = 'primary-700';
@@ -57,6 +61,15 @@ function InputLayout({
           {status.text}
         </Typography>
       )}
+      <Typography
+        className={cx(hideAssistiveText && styles['hide-assistive-text'], styles.assistiveText)}
+        as='assistiveText'
+        textType='paragraph3'
+        textColor='neutral-900'
+        htmlFor={name}
+      >
+        {assistiveText}
+      </Typography>
     </div>
   );
 }
