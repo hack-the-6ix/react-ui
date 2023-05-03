@@ -15,11 +15,12 @@
   border-radius: 4rem;
   border-style: solid;
   border-width: 2px;
-  background-color: 'neutral-50';
+  background-color: colors.getColor(neutral-50);
 
   &:disabled {
     // TODO: 'neutral-50' with 38% opacity for Disabled State on entire component
-    border-color: colors.getColor(neutral-50);
+    border-color: colors.getColor(neutral-50, null, 0.38);
+    background-color: colors.getColor(neutral-50, null, 0.38);
     cursor: not-allowed;
   }
 
