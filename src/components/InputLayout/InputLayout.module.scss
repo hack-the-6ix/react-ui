@@ -13,7 +13,8 @@
 }
 
 .status,
-.label {
+.label,
+.assistiveText {
   @include mixins.transition(color);
 }
 

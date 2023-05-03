@@ -36,8 +36,10 @@ function InputLayout({
   if (disabled) {
     // TODO: 'neutral-50' with 38% opacity for Disabled State on entire component
     textColor = 'neutral-50';
-  } else if (status?.state) {
-    textColor = status?.state;
+  } else if (status?.state === 'error') {
+    textColor = 'error-500';
+  } else if (status?.state === 'success') {
+    textColor = 'success';
   }
   return (
     <div {...props} className={cx(styles.container, className)}>
@@ -45,7 +47,7 @@ function InputLayout({
         className={cx(hideLabel && styles['hide-label'], styles.label)}
         as='label'
         textType='paragraph2'
-        textColor={textColor}
+        textColor='neutral-50'
         htmlFor={name}
       >
         {label}
@@ -66,7 +68,7 @@ function InputLayout({
         className={cx(hideAssistiveText && styles['hide-assistive-text'], styles.assistiveText)}
         as='assistiveText'
         textType='paragraph3'
-        textColor='neutral-50'
+        textColor={textColor}
         htmlFor={name}
       >
         {assistiveText}
