@@ -54,10 +54,10 @@ $config: (
 @function _fonts($root: '/') {
   @return (
     (
-      font-family: 'Open Sans',
+      font-family: 'Inter',
       font-weight: 1 999,
       src: (
-        url('#{$root}OpenSans-VariableFont.woff2') format('woff2-variations'),
+        url('#{$root}Inter-VariableFont.woff2') format('woff2-variations'),
       ),
     ),
   );
