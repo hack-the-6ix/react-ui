@@ -18,14 +18,11 @@
   @include mixins.transition(color);
 }
 
-.label {
+.label,
+.assistiveText {
   margin-left: 0.75rem;
 }
 
 .required-star {
   color: colors.getColor(error-600);
-}
-
-.assistiveText {
-  margin-left: 0.75rem;
 }
