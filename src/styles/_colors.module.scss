@@ -129,10 +129,8 @@ $_modifer-map: (
   @each $color, $info in $config {
     $c: map-get($info, color);
     #{_getVar($color)}: #{_rgb($c)};
-    #{_getVar($color, hover)}: #{_rgb($c)};
-    #{_getVar($color, active)}: #{_rgb($c)};
-    #{_getVar($color, focus)}: #{_rgb($c)};
-    #{_getVar($color, disabled)}: #{_rgb(darken($c, 38%))};
+    #{_getVar($color, hover)}: #{_rgb(darken($c, 6%))};
+    #{_getVar($color, active)}: #{_rgb(darken($c, 12%))};
   }
 }
 
