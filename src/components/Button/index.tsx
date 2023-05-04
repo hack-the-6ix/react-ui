@@ -40,7 +40,7 @@ function Button({
         styles.base,
         className,
       )}
-      textType='heading4'
+      textType='paragraph2'
       as={props.as ?? 'button'}
     >
       {icon?.placement === 'left' && (
