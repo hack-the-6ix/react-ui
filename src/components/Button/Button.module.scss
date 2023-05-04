@@ -56,9 +56,9 @@
   }
 
   &--outline {
-    background-color: transparent;
-    border: 1px solid var(--button-c);
-    color: var(--button-c);
+    background-color: var(--button-c);
+    border: 1px solid colors.getColor(neutral-50);
+    color: colors.getColor(neutral-50);
 
     &:not(:disabled),
     &:not(.disabled) {
@@ -67,13 +67,11 @@
       &:focus {
         background-color: var(--button-h);
         color: colors.getColor(copy-light);
-        border-color: var(--button-h);
       }
 
       &:active {
         background-color: var(--button-a);
         color: colors.getColor(copy-light);
-        border-color: var(--button-a);
       }
     }
   }
