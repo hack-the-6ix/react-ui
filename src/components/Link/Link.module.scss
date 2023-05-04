@@ -1,2 +1,35 @@
 @use '../../styles/colors.module';
 @use '../../styles/mixins.module';
+
+.link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 64px;
+    color: colors.getColor(warning-400);
+
+    &:hover {
+        background-color: colors.getColor(warning-50);
+        opacity: 12%;
+    }
+
+    &:focus,
+    &:active {
+        background-color: colors.getColor(warning-200);
+        opacity: 18%;
+    }
+
+    &.disabledLink {
+        pointer-events: none;
+        opacity: 0.38;
+        background-color: transparent;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: transparent;
+        }
+
+    }
+
+}
+

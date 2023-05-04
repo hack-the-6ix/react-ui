@@ -9,7 +9,7 @@ export interface LinkProps {
     underline: boolean; // 0 - no underline; 1 - underlined
     destination: string; // where the link should lead to
     linkContent?: ReactNode;
-    disabled?: boolean; // 0 - not disabled; 1- disabled
+    isDisabled?: boolean; // 0 - not disabled; 1- disabled
     textType: TextTypes;
     target?: '_self' | '_blank' | '_parent' | '_top';
 }
@@ -20,24 +20,25 @@ function Link({
     textType,
     className,
     target,
+    isDisabled,
+    underline,
     ...props
 }: LinkProps) {
     let textColor = "warning-400";
     let fontWeight = 600; 
 
     return (
-        <div className={cx(styles.container, className)}>
-            <Typography
-                as='label'
-                textType={textType}
-                textColor={textColor}
-                fontWeight={fontWeight}
-            >
-                <a href={destination} target={target?? undefined}>
+        <Typography
+            className={cx(className)}
+            textType={textType}
+            textColor={textColor}
+            fontWeight={fontWeight}
+        >
+            <a href={destination} target={target?? undefined} className={cx(styles.link, isDisabled && styles.disabledLink)} {...underline? {style: {textDecoration: "underline"}} : {style: {textDecoration: 'none'}}}> 
                     {linkContent?? destination}
-                </a>
-            </Typography>
-        </div>
+            </a>
+        </Typography>
+        
     );
     
 }
