@@ -7,8 +7,8 @@
 
 .base {
   @include mixins.transition(background-color border-color color);
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4rem;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -25,7 +25,9 @@
 }
 
 .color {
-  @each $color, $_ in colors.$config {
+
+  @each $color,
+  $_ in colors.$config {
     &--#{$color} {
       --button-c: #{colors.getColor($color)};
       --button-h: #{colors.getColor($color, hover)};
@@ -41,6 +43,7 @@
 
     &:not(:disabled),
     &:not(.disabled) {
+
       &:hover,
       &:focus {
         background-color: var(--button-h);
@@ -59,6 +62,7 @@
 
     &:not(:disabled),
     &:not(.disabled) {
+
       &:hover,
       &:focus {
         background-color: var(--button-h);
