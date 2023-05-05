@@ -13,7 +13,7 @@ interface _ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     element: ElementType;
   };
   disabled?: boolean;
-  buttonVariant?: 'solid' | 'outline';
+  buttonVariant?: 'primary' | 'secondary' | 'tertiary';
   buttonColor?: Colors;
 }
 
@@ -23,7 +23,7 @@ function Button({
   /** Color of the button */
   buttonColor = 'primary-500',
   /** Type of button */
-  buttonVariant = 'solid',
+  buttonVariant = 'primary',
   className,
   children,
   /** For applying icons to the button */

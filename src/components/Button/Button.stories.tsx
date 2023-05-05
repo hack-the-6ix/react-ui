@@ -21,5 +21,5 @@ export const DefaultStory = (args: ButtonProps) => <Button {...args} />;
 DefaultStory.args = {
   children: 'Sample text uwu',
   buttonColor: 'primary-500',
-  buttonVariant: 'solid',
+  buttonVariant: 'primary',
 };

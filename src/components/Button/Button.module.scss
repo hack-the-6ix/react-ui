@@ -17,9 +17,8 @@
 
   &.disabled,
   &:disabled {
-    background-color: colors.getColor(disabled-dark);
-    border-color: colors.getColor(disabled-dark);
-    color: colors.getColor(grey);
+    background-color: colors.getColor(primary-500, $alpha: 0.18);
+    color: colors.getColor(neutral-50, $alpha: 0.38);
     cursor: not-allowed;
   }
 }
@@ -37,42 +36,73 @@
 }
 
 .variant {
-  &--solid {
+  &--primary {
     background-color: var(--button-c);
     color: colors.getColor(copy-light);
 
     &:not(:disabled),
     &:not(.disabled) {
 
-      &:hover,
-      &:focus {
+      &:hover {
         background-color: var(--button-h);
       }
 
+      &:focus,
       &:active {
         background-color: var(--button-a);
       }
     }
   }
 
-  &--outline {
-    background-color: var(--button-c);
+  &--secondary {
+    background-color: colors.getColor(neutral-900);
     border: 1px solid colors.getColor(neutral-50);
     color: colors.getColor(neutral-50);
+
+    &.disabled,
+    &:disabled {
+      background-color: colors.getColor(neutral-900, $alpha: 0.18);
+      border: 1px solid colors.getColor(neutral-50, $alpha: 0.18);
+      color: colors.getColor(neutral-50, $alpha: 0.38);
+    }
 
     &:not(:disabled),
     &:not(.disabled) {
 
-      &:hover,
-      &:focus {
-        background-color: var(--button-h);
-        color: colors.getColor(copy-light);
+      &:hover {
+        background-color: colors.getColor(primary-50, $alpha: 0.12);
       }
 
+      &:focus,
       &:active {
-        background-color: var(--button-a);
-        color: colors.getColor(copy-light);
+        background-color: colors.getColor(primary-200, $alpha: 0.18);
       }
+
+    }
+  }
+
+  &--tertiary {
+    background-color: colors.getColor(neutral-900);
+    color: colors.getColor(neutral-50);
+
+    &.disabled,
+    &:disabled {
+      background-color: colors.getColor(neutral-900, $alpha: 0.18);
+      color: colors.getColor(neutral-50, $alpha: 0.38);
+    }
+
+    &:not(:disabled),
+    &:not(.disabled) {
+
+      &:hover {
+        background-color: colors.getColor(primary-50, $alpha: 0.12);
+      }
+
+      &:focus,
+      &:active {
+        background-color: colors.getColor(primary-200, $alpha: 0.18);
+      }
+
     }
   }
 }
