@@ -8,14 +8,16 @@
     color: colors.getColor(warning-400);
 
     &:hover {
-        background-color: colors.getColor(warning-50);
-        opacity: 12%;
+        //background-color: colors.getColor(warning-50);
+        background-color: rgba($color: #FFFBEB, $alpha: 0.12);
+        //opacity: 12%;
     }
 
     &:focus,
     &:active {
-        background-color: colors.getColor(warning-200);
-        opacity: 18%;
+        //background-color: colors.getColor(warning-200);
+        background-color: rgba($color: #FDE68A, $alpha: 0.18);
+        //opacity: 18%;
     }
 
     &.disabledLink {
