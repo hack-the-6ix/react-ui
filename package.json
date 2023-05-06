@@ -8,7 +8,7 @@
   "sideEffects": false,
   "private": false,
   "engines": {
-    "node": "16"
+    "node": "18"
   },
   "files": [
     "dist",
