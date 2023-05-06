@@ -82,12 +82,12 @@
   }
 
   &--tertiary {
-    background-color: colors.getColor(neutral-900);
+    background-color: colors.getColor(neutral-900, 0);
     color: colors.getColor(neutral-50);
 
     &.disabled,
     &:disabled {
-      background-color: colors.getColor(neutral-900, $alpha: 0.18);
+      background-color: colors.getColor(neutral-900, 0);
       color: colors.getColor(neutral-50, $alpha: 0.38);
     }
 
