@@ -26,4 +26,5 @@ export const DefaultStory = (args: TypographyProps) => <Typography {...args} />;
 DefaultStory.args = {
   children: 'Sample text uwu',
   textType: 'heading1',
+  textWeight: 'bold',
 };

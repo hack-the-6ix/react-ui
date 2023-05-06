@@ -23,6 +23,10 @@
   }
 }
 
-.with-weight {
-  font-weight: var(--typo-weight);
+.weight {
+  @each $weight, $_ in fonts.$weights{
+    &--#{$weight}{
+      font-weight: fonts.getWeight($weight);
+    }
+  }
 }

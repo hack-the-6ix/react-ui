@@ -36,7 +36,7 @@ const Typography = forwardRef<HTMLElement, TypographyProps>(
         className={cx(
           textColor && styles[`color--${textColor}`],
           textType && styles[`type--${textType}`],
-          textWeight && styles[`with-weight`],
+          textWeight && styles[`weight--${textWeight}`],
           styles.text,
           className,
         )}

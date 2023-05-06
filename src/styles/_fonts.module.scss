@@ -91,6 +91,14 @@ $config: (
   ),
 );
 
+$weights: (
+  regular: 400,
+  medium: 500,
+  semi-bold: 600,
+  bold: 700,
+  extra-bold: 800
+);
+
 // Example config, change for the year
 // prettier-ignore
 @function _fonts($root: '/') {
@@ -114,4 +122,8 @@ $config: (
       font-display: swap;
     }
   }
+}
+
+@function getWeight($weight) {
+  @return map-get($weights, $weight)
 }
