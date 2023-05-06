@@ -55,13 +55,13 @@
   }
 
   &--secondary {
-    background-color: colors.getColor(neutral-900);
+    background-color: colors.getColor(neutral-900, $alpha: 0);
     border: 1px solid colors.getColor(neutral-50);
     color: colors.getColor(neutral-50);
 
     &.disabled,
     &:disabled {
-      background-color: colors.getColor(neutral-900, $alpha: 0.18);
+      background-color: colors.getColor(neutral-900, $alpha: 0);
       border: 1px solid colors.getColor(neutral-50, $alpha: 0.18);
       color: colors.getColor(neutral-50, $alpha: 0.38);
     }
