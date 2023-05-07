@@ -36,5 +36,6 @@
   &:focus {
     outline: none;
     border-color: colors.getColor(primary-500);
+    background-color: colors.getColor(shades-0);
   }
 }
