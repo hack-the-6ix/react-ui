@@ -9,12 +9,12 @@ interface _ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   children?: ReactNode;
   icon?: {
-    placement: 'left' | 'center' | 'right';
     element: ElementType;
   };
   disabled?: boolean;
   buttonVariant?: 'primary' | 'secondary' | 'tertiary';
   buttonColor?: Colors;
+  iconOnly?: boolean;
 }
 
 export type ButtonProps = ComponentWithAs<_ButtonProps>;
@@ -28,6 +28,7 @@ function Button({
   children,
   /** For applying icons to the button */
   icon,
+  iconOnly = false,
   ...props
 }: ButtonProps) {
   return (
@@ -38,22 +39,18 @@ function Button({
         props.disabled && styles['disabled'],
         styles[`color--${buttonColor}`],
         styles.base,
+        iconOnly && styles['iconOnly'],
         className,
       )}
       textType='paragraph2'
       as={props.as ?? 'button'}
     >
-      {icon?.placement === 'left' && (
+      {icon && (
         <span className={styles.icon}>
           <icon.element />
         </span>
       )}
-      <span>{icon?.placement === 'center' ? <icon.element /> : children}</span>
-      {icon?.placement === 'right' && (
-        <span className={styles.icon}>
-          <icon.element />
-        </span>
-      )}
+      {!iconOnly && children}
     </Typography>
   );
 }
