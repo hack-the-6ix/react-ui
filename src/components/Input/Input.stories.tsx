@@ -29,6 +29,11 @@ export default {
         type: 'boolean',
       },
     },
+    hideIcon: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 };
 

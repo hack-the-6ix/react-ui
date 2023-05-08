@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ElementType, ReactNode } from 'react';
 import cx from 'classnames';
 import { Typography } from '..';
 import styles from './InputLayout.module.scss';
@@ -17,6 +17,11 @@ export interface InputLayoutProps {
   };
   assistiveText: string;
   hideAssistiveText?: boolean;
+  hideIcon?: boolean;
+  icon?: {
+    placement: 'default' | 'filled';
+    element: ElementType;
+  };
 }
 
 function InputLayout({
@@ -30,6 +35,8 @@ function InputLayout({
   required,
   assistiveText,
   hideAssistiveText,
+  hideIcon,
+  icon,
   ...props
 }: InputLayoutProps) {
   let textColor = 'neutral-50';
