@@ -18,6 +18,7 @@
     "start": "NODE_ENV=development rollup -c -w",
     "prepublishOnly": "npm run build",
     "build": "rm -rf dist && rollup -c",
+    "build:windows": "rmdir dist /s /q && rollup -c",
     "lint": "prettier --write .",
     "test": "npm run test:lint",
     "test:lint": "prettier --check .",

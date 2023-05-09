@@ -11,3 +11,5 @@ export { default as StyleProvider, StyleProviderProps } from './StyleProvider';
 export { default as Textarea, TextareaProps } from './Textarea';
 export { default as Typography, TypographyProps } from './Typography';
 export { default as Checkbox, CheckboxProps } from './Checkbox';
+export { default as Link, LinkProps } from './Link'; 
+export { default as BasicLink, BasicLinkProps } from './BasicLink';
