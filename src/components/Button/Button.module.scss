@@ -7,8 +7,8 @@
 
 .base {
   @include mixins.transition(background-color border-color color);
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4rem;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -17,15 +17,16 @@
 
   &.disabled,
   &:disabled {
-    background-color: colors.getColor(disabled-dark);
-    border-color: colors.getColor(disabled-dark);
-    color: colors.getColor(grey);
+    background-color: colors.getColor(primary-500, $alpha: 0.18);
+    color: colors.getColor(neutral-50, $alpha: 0.38);
     cursor: not-allowed;
   }
 }
 
 .color {
-  @each $color, $_ in colors.$config {
+
+  @each $color,
+  $_ in colors.$config {
     &--#{$color} {
       --button-c: #{colors.getColor($color)};
       --button-h: #{colors.getColor($color, hover)};
@@ -35,52 +36,90 @@
 }
 
 .variant {
-  &--solid {
+  &--primary {
     background-color: var(--button-c);
     color: colors.getColor(copy-light);
 
     &:not(:disabled),
     &:not(.disabled) {
-      &:hover,
-      &:focus {
+
+      &:hover {
         background-color: var(--button-h);
       }
 
+      &:focus,
       &:active {
         background-color: var(--button-a);
       }
     }
   }
 
-  &--outline {
-    background-color: transparent;
-    border: 1px solid var(--button-c);
-    color: var(--button-c);
+  &--secondary {
+    background-color: colors.getColor(neutral-900, $alpha: 0);
+    border: 1px solid colors.getColor(neutral-50);
+    color: colors.getColor(neutral-50);
+
+    &.disabled,
+    &:disabled {
+      background-color: colors.getColor(neutral-900, $alpha: 0);
+      border: 1px solid colors.getColor(neutral-50, $alpha: 0.18);
+      color: colors.getColor(neutral-50, $alpha: 0.38);
+    }
 
     &:not(:disabled),
     &:not(.disabled) {
-      &:hover,
-      &:focus {
-        background-color: var(--button-h);
-        color: colors.getColor(copy-light);
-        border-color: var(--button-h);
+
+      &:hover {
+        background-color: colors.getColor(primary-50, $alpha: 0.12);
       }
 
+      &:focus,
       &:active {
-        background-color: var(--button-a);
-        color: colors.getColor(copy-light);
-        border-color: var(--button-a);
+        background-color: colors.getColor(primary-200, $alpha: 0.18);
       }
+
+    }
+  }
+
+  &--tertiary {
+    background-color: colors.getColor(neutral-900, 0);
+    color: colors.getColor(neutral-50);
+
+    &.disabled,
+    &:disabled {
+      background-color: colors.getColor(neutral-900, 0);
+      color: colors.getColor(neutral-50, $alpha: 0.38);
+    }
+
+    &:not(:disabled),
+    &:not(.disabled) {
+
+      &:hover {
+        background-color: colors.getColor(primary-50, $alpha: 0.12);
+      }
+
+      &:focus,
+      &:active {
+        background-color: colors.getColor(primary-200, $alpha: 0.18);
+      }
+
     }
   }
 }
 
-.icon {
-  &:first-child {
-    margin-right: 1rem;
-  }
+.icon-container {
+  display: flex;
+  align-items: center;
+}
 
-  &:last-child {
-    margin-left: 1rem;
-  }
+.icon-container-withtext {
+  margin-right: 0.75em;
+}
+
+.button-icon-only {
+  padding: 1em;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
 }
