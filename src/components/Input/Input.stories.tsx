@@ -28,12 +28,7 @@ export default {
       control: {
         type: 'boolean',
       },
-    },
-    hideIcon: {
-      control: {
-        type: 'boolean',
-      },
-    },
+    }
   },
 };
 
