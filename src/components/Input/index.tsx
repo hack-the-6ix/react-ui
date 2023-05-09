@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useRef } from 'react';
+import React, {InputHTMLAttributes} from 'react';
 import cx from 'classnames';
 import { Typography, InputLayout, InputLayoutProps } from '..';
 import { Colors } from '../../styles';
@@ -13,18 +13,16 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   status?: InputLayoutProps['status'];
   /** The label of the input and placeholder (if not provided) */
   label: InputLayoutProps['label'];
+  labelColor?: InputLayoutProps['labelColor'],
   /** Name of form input */
   name: InputLayoutProps['name'];
   /** The name of the class */
   className?: string;
   /** Assistive/Descriptive Text below input field **/
-  assistiveText: InputLayoutProps['assistiveText'];
+  assistiveText?: InputLayoutProps['assistiveText'];
+  assistiveTextColor?: InputLayoutProps['assistiveTextColor'];
   /** Hides Assistive/Descriptive Text of input (Only visually) */
   hideAssistiveText?: InputLayoutProps['hideAssistiveText'];
-  /** Hides Icon in Input Field (Only visually) */
-  hideIcon?: InputLayoutProps['hideIcon'];
-  /** Icon in Input Field */
-  icon?: InputLayoutProps['icon'];
 }
 
 function Input({
@@ -33,33 +31,14 @@ function Input({
   hideLabel,
   status,
   label,
+  labelColor,
   name,
   assistiveText,
+  assistiveTextColor,
   hideAssistiveText,
-  hideIcon,
-  icon,
   ...props
 }: InputProps) {
   if (status?.state) outlineColor = (status?.state === 'error' ? 'error-500' : 'success');
-
-  // Icon Display & Interactivity
-  let input = document.getElementsByClassName('input');
-
-  // Handling Input Field when empty/filled
-  const inputChange = () => {
-    if(input.length !== 0) {
-      return icon?.placement === 'default';
-    } else {
-      return icon?.placement === 'filled';
-    };
-  };
-  
-  const handleIconFilled = () => {
-    // Clear Input Field when x icon (filled) is clicked
-    if(input.length !== 0) {
-      input.value = "";
-    };
-  };
 
   return (
     <InputLayout
@@ -69,33 +48,22 @@ function Input({
       disabled={props.disabled}
       status={status}
       label={label}
+      labelColor={labelColor}
       name={name}
       assistiveText={assistiveText}
+      assistiveTextColor={assistiveTextColor}
       hideAssistiveText={hideAssistiveText}
-      hideIcon={hideIcon}
     >
       <Typography
-        textType='paragraph2'
-        as='input'
-        className={cx(
-          outlineColor && styles[`outline--${outlineColor}`],
-          styles.input,
-        )}
-        placeholder={label}
-        name={name}
-        {...props}
-        onFocus={inputChange}
-      />
-      {icon?.placement === 'default' && (
-        <span className={styles.iconDefault}>
-          <icon.element />
-        </span>
-      )}
-      {icon?.placement === 'filled' && (
-        <span className={styles.iconFilled}>
-          <icon.element onClick={handleIconFilled} />
-        </span>
-      )}
+          textType='paragraph2'
+          as='input'
+          className={cx(
+              outlineColor && styles[`outline--${outlineColor}`],
+              styles.input,
+          )}
+          placeholder={label}
+          name={name}
+          {...props}/>
     </InputLayout>
   );
 }

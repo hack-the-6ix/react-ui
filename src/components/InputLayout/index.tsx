@@ -2,6 +2,7 @@ import { ElementType, ReactNode } from 'react';
 import cx from 'classnames';
 import { Typography } from '..';
 import styles from './InputLayout.module.scss';
+import {Colors} from "../../styles";
 
 export interface InputLayoutProps {
   children: ReactNode;
@@ -10,36 +11,34 @@ export interface InputLayoutProps {
   className?: string;
   disabled?: boolean;
   label: string;
+  labelColor?: Colors;
   name: string;
   status?: {
     state: 'error' | 'success';
     text?: ReactNode;
   };
-  assistiveText: string;
+  assistiveText?: string;
+  assistiveTextColor?: Colors;
   hideAssistiveText?: boolean;
-  hideIcon?: boolean;
-  icon?: {
-    placement: 'default' | 'filled';
-    element: ElementType;
-  };
 }
 
 function InputLayout({
   className,
   hideLabel,
   label,
+  labelColor = 'neutral-50',
   status,
   children,
   disabled,
   name,
   required,
   assistiveText,
+  assistiveTextColor = 'neutral-50',
   hideAssistiveText,
-  hideIcon,
-  icon,
   ...props
 }: InputLayoutProps) {
-  let textColor = 'neutral-50';
+  let textColor;
+
   if (disabled) {
     // TODO: 'neutral-50' with 38% opacity for Disabled State on entire component
     textColor = 'neutral-50';
@@ -54,7 +53,8 @@ function InputLayout({
         className={cx(hideLabel && styles['hide-label'], styles.label)}
         as='label'
         textType='paragraph2'
-        textColor='neutral-50'
+        textWeight={600}
+        textColor={textColor ?? labelColor}
         htmlFor={name}
       >
         {label}
@@ -71,15 +71,16 @@ function InputLayout({
           {status.text}
         </Typography>
       )}
-      <Typography
-        className={cx(hideAssistiveText && styles['hide-assistive-text'], styles.assistiveText)}
-        as='assistiveText'
-        textType='paragraph3'
-        textColor={textColor}
-        htmlFor={name}
-      >
-        {assistiveText}
-      </Typography>
+      {assistiveText &&
+          <Typography
+              className={cx(hideAssistiveText && styles['hide-assistive-text'], styles.assistiveText)}
+              textType='paragraph3'
+              textColor={textColor ?? assistiveTextColor}
+              textWeight={500}
+              htmlFor={name}
+          >
+            {assistiveText}
+          </Typography>}
     </div>
   );
 }
