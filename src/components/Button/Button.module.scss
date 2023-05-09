@@ -107,17 +107,19 @@
   }
 }
 
-.icon {
-  &:first-child {
-    margin-right: 1rem;
-  }
-
-  &:last-child {
-    margin-left: 1rem;
-  }
+.icon-container {
+  display: flex;
+  align-items: center;
 }
 
-.iconOnly {
-  padding: 0.75rem;
+.icon-container-withtext {
+  margin-right: 0.75em;
+}
+
+.button-icon-only {
+  padding: 1em;
   border-radius: 50%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
 }

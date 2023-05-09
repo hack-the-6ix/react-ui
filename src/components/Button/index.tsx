@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ElementType, ReactNode } from 'react';
+import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import cx from 'classnames';
 import { Typography } from '..';
 import { Colors } from '../../styles';
@@ -8,9 +8,7 @@ import { ComponentWithAs } from '../../types';
 interface _ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   children?: ReactNode;
-  icon?: {
-    element: ElementType;
-  };
+  icon?: ReactNode;
   disabled?: boolean;
   buttonVariant?: 'primary' | 'secondary' | 'tertiary';
   buttonColor?: Colors;
@@ -39,17 +37,17 @@ function Button({
         props.disabled && styles['disabled'],
         styles[`color--${buttonColor}`],
         styles.base,
-        iconOnly && styles['iconOnly'],
+        iconOnly && styles['button-icon-only'],
         className,
       )}
       textType='paragraph2'
+      textWeight={600}
       as={props.as ?? 'button'}
     >
-      {icon && (
-        <span className={styles.icon}>
-          <icon.element />
-        </span>
-      )}
+      {
+        icon &&
+        <div className={cx(styles['icon-container'], !iconOnly && styles['icon-container-withtext'])}>{icon}</div>
+      }
       {!iconOnly && children}
     </Typography>
   );
