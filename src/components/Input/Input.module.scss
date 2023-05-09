@@ -11,13 +11,34 @@
 
 .input {
   @include mixins.transition(border-color);
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.375rem;
+  padding: 0.75rem;
+  border-radius: 4rem;
   border-style: solid;
   border-width: 2px;
+  background-color: colors.getColor(neutral-50);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: space-between;
 
   &:disabled {
-    border-color: colors.getColor(disabled-dark);
+    // TODO: 'neutral-50' with 38% opacity for Disabled State on entire component
+    border-color: colors.getColor(neutral-50, null, 0.38);
+    background-color: colors.getColor(neutral-50, null, 0.38);
     cursor: not-allowed;
+  }
+
+  &:hover {
+    border-color: colors.getColor(neutral-300);
+  }
+  
+  &:active {
+    border-color: colors.getColor(primary-500);
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: colors.getColor(primary-500);
+    background-color: colors.getColor(shades-0);
   }
 }

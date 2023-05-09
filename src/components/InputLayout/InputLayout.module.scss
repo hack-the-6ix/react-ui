@@ -4,16 +4,23 @@
 .container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
-.hide-label {
+.hide-label,
+.hide-assistive-text {
   display: none;
 }
 
 .status,
-.label {
+.label,
+.assistiveText {
   @include mixins.transition(color);
+}
+
+.label,
+.assistiveText {
+  margin-left: 0.75rem;
 }
 
 .required-star {

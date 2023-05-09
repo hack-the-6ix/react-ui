@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from 'react';
+import React, {InputHTMLAttributes} from 'react';
 import cx from 'classnames';
 import { Typography, InputLayout, InputLayoutProps } from '..';
 import { Colors } from '../../styles';
@@ -13,22 +13,33 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   status?: InputLayoutProps['status'];
   /** The label of the input and placeholder (if not provided) */
   label: InputLayoutProps['label'];
+  labelColor?: InputLayoutProps['labelColor'],
   /** Name of form input */
   name: InputLayoutProps['name'];
   /** The name of the class */
   className?: string;
+  /** Assistive/Descriptive Text below input field **/
+  assistiveText?: InputLayoutProps['assistiveText'];
+  assistiveTextColor?: InputLayoutProps['assistiveTextColor'];
+  /** Hides Assistive/Descriptive Text of input (Only visually) */
+  hideAssistiveText?: InputLayoutProps['hideAssistiveText'];
 }
 
 function Input({
-  outlineColor = 'grey',
+  outlineColor = 'shades-0',
   className,
   hideLabel,
   status,
   label,
+  labelColor,
   name,
+  assistiveText,
+  assistiveTextColor,
+  hideAssistiveText,
   ...props
 }: InputProps) {
   if (status?.state) outlineColor = (status?.state === 'error' ? 'error-500' : 'success');
+
   return (
     <InputLayout
       required={props.required}
@@ -37,19 +48,22 @@ function Input({
       disabled={props.disabled}
       status={status}
       label={label}
+      labelColor={labelColor}
       name={name}
+      assistiveText={assistiveText}
+      assistiveTextColor={assistiveTextColor}
+      hideAssistiveText={hideAssistiveText}
     >
       <Typography
-        textType='paragraph2'
-        as='input'
-        className={cx(
-          outlineColor && styles[`outline--${outlineColor}`],
-          styles.input,
-        )}
-        placeholder={label}
-        name={name}
-        {...props}
-      />
+          textType='paragraph2'
+          as='input'
+          className={cx(
+              outlineColor && styles[`outline--${outlineColor}`],
+              styles.input,
+          )}
+          placeholder={label}
+          name={name}
+          {...props}/>
     </InputLayout>
   );
 }
