@@ -1,31 +1,29 @@
-import { ReactNode } from 'react';
 import cx from 'classnames';
 import Typography from '../Typography';
 import { TextTypes } from '../../styles';
 import styles from './Link.module.scss';
+import {ComponentWithAs} from "../../types";
 
-export interface LinkProps {
+export type LinkProps = ComponentWithAs<{
     className?: string;
-    underline: boolean; // 0 - no underline; 1 - underlined
-    destination: string; // where the link should lead to
-    linkContent?: ReactNode;
+    underline?: boolean; // 0 - no underline; 1 - underlined
     isDisabled?: boolean; // 0 - not disabled; 1- disabled
     textType: TextTypes;
-    target?: '_self' | '_blank' | '_parent' | '_top';
-}
+}>;
 
 function Link({
-    linkContent,
-    destination,
+    as: Component = 'a',
     textType,
     className,
-    target,
     isDisabled,
     underline,
+    children,
     ...props
 }: LinkProps) {
     let textColor = "warning-400";
-    let fontWeight = 600; 
+    let fontWeight = 600;
+
+    underline = underline ?? false;
 
     return (
         <Typography
@@ -34,9 +32,9 @@ function Link({
             textColor={textColor}
             fontWeight={fontWeight}
         >
-            <a href={destination} target={target?? undefined} className={cx(styles.link, isDisabled && styles.disabledLink)} {...underline? {style: {textDecoration: "underline"}} : {style: {textDecoration: 'none'}}}> 
-                    {linkContent?? destination}
-            </a>
+            <Component {...props} className={cx(styles.link, isDisabled && styles.disabledLink)} {...underline? {style: {textDecoration: "underline"}} : {style: {textDecoration: 'none'}}}>
+                    {children}
+            </Component>
         </Typography>
         
     );
