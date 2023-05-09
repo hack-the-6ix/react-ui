@@ -31,14 +31,40 @@
   &:hover {
     border-color: colors.getColor(neutral-300);
   }
-  
+
   &:active {
     border-color: colors.getColor(primary-500);
   }
-  
+
   &:focus {
     outline: none;
     border-color: colors.getColor(primary-500);
     background-color: colors.getColor(shades-0);
   }
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-container > *:nth-child(2) {
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.input-container.manage-opacity.has-content > *:nth-child(2) {
+  opacity: 30%;
+  @include mixins.transition(opacity);
+
+  &:hover {
+    opacity: 100%;
+  }
+}
+
+.iconDefault,
+.iconFilled {
+  display: block;
+  margin-left: auto;
 }

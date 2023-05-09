@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { Typography } from '..';
 import styles from './InputLayout.module.scss';
 import {Colors} from "../../styles";
+import {types} from "sass";
 
 export interface InputLayoutProps {
   children: ReactNode;
@@ -20,23 +21,30 @@ export interface InputLayoutProps {
   assistiveText?: string;
   assistiveTextColor?: Colors;
   hideAssistiveText?: boolean;
+  hideIcon?: boolean;
+  icon?: {
+    placement: 'default' | 'filled';
+    element: ElementType;
+  };
 }
 
 function InputLayout({
-  className,
-  hideLabel,
-  label,
-  labelColor = 'neutral-50',
-  status,
-  children,
-  disabled,
-  name,
-  required,
-  assistiveText,
-  assistiveTextColor = 'neutral-50',
-  hideAssistiveText,
-  ...props
-}: InputLayoutProps) {
+                       className,
+                       hideLabel,
+                       label,
+                       labelColor = 'neutral-50',
+                       status,
+                       children,
+                       disabled,
+                       name,
+                       required,
+                       assistiveText,
+                       assistiveTextColor = 'neutral-50',
+                       hideAssistiveText,
+                       hideIcon,
+                       icon,
+                       ...props
+                     }: InputLayoutProps) {
   let textColor;
 
   if (disabled) {
@@ -48,40 +56,40 @@ function InputLayout({
     textColor = 'success';
   }
   return (
-    <div {...props} className={cx(styles.container, className)}>
-      <Typography
-        className={cx(hideLabel && styles['hide-label'], styles.label)}
-        as='label'
-        textType='paragraph2'
-        textWeight={600}
-        textColor={textColor ?? labelColor}
-        htmlFor={name}
-      >
-        {label}
-        {required ? <span className={cx(styles['required-star'])}> *</span> : ''}
-      </Typography>
-      {children}
-      {status?.text && (
+      <div {...props} className={cx(styles.container, className)}>
         <Typography
-          className={styles.status}
-          as='span'
-          textType='paragraph2'
-          textColor={status.state ?? 'neutral-900'}
+            className={cx(hideLabel && styles['hide-label'], styles.label)}
+            as='label'
+            textType='paragraph2'
+            textWeight={600}
+            textColor={textColor ?? labelColor}
+            htmlFor={name}
         >
-          {status.text}
+          {label}
+          {required ? <span className={cx(styles['required-star'])}> *</span> : ''}
         </Typography>
-      )}
-      {assistiveText &&
-          <Typography
-              className={cx(hideAssistiveText && styles['hide-assistive-text'], styles.assistiveText)}
-              textType='paragraph3'
-              textColor={textColor ?? assistiveTextColor}
-              textWeight={500}
-              htmlFor={name}
-          >
-            {assistiveText}
-          </Typography>}
-    </div>
+        {children}
+        {status?.text && (
+            <Typography
+                className={styles.status}
+                as='span'
+                textType='paragraph2'
+                textColor={status.state ?? 'neutral-900'}
+            >
+              {status.text}
+            </Typography>
+        )}
+        {assistiveText &&
+            <Typography
+                className={cx(hideAssistiveText && styles['hide-assistive-text'], styles.assistiveText)}
+                textType='paragraph3'
+                textColor={textColor ?? assistiveTextColor}
+                textWeight={500}
+                htmlFor={name}
+            >
+              {assistiveText}
+            </Typography>}
+      </div>
   );
 }
 
