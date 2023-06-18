@@ -7,6 +7,14 @@ import styles from './Input.module.scss';
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /** The default color of the input border */
   outlineColor?: Colors;
+  /** Sets the background to be translucent (2023 website figma) */
+  translucentBackground?: boolean,
+  /** Removes border (2023 website figma) */
+  noBorder?: boolean,
+  /** Changes the color of placeholder text */
+  placeHolderColor?: Colors,
+  /** Changes the color of typed text */
+  textColor?: Colors,
   /** Hides label of input (Only visually) */
   hideLabel?: InputLayoutProps['hideLabel'];
   /** For setting success/error states */
@@ -27,6 +35,10 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 function Input({
   outlineColor = 'shades-0',
+  translucentBackground = false,
+  noBorder = false,
+  placeHolderColor,
+  textColor,
   className,
   hideLabel,
   status,
@@ -60,6 +72,10 @@ function Input({
           className={cx(
               outlineColor && styles[`outline--${outlineColor}`],
               styles.input,
+              translucentBackground && styles.translucent,
+              noBorder && styles.noborder,
+              placeHolderColor && styles[`placeholdercolor--${placeHolderColor}`],
+              textColor && styles[`textcolor--${textColor}`],
           )}
           placeholder={label}
           name={name}
