@@ -9,6 +9,25 @@
   }
 }
 
+.placeholdercolor{
+  @each $color, $_ in colors.$config {
+    &--#{$color} {
+      &::placeholder{
+        color: colors.getColor($color)
+      }
+    }
+  }
+}
+
+.textcolor{
+  @each $color, $_ in colors.$config {
+    &--#{$color} {
+      color: colors.getColor($color)
+    }
+  }
+}
+
+
 .input {
   @include mixins.transition(border-color);
   padding: 0.75rem;
@@ -41,4 +60,17 @@
     border-color: colors.getColor(primary-500);
     background-color: colors.getColor(shades-0);
   }
+  
+}
+
+.translucent {
+  background-color: colors.getColor(neutral-50, null, var(--input-opacity));
+
+  &:focus {
+    background-color: colors.getColor(neutral-50, null, var(--input-opacity-on-hover))
+  }
+}
+
+.noborder {
+  border-width: 0px;
 }
