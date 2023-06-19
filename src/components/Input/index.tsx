@@ -7,9 +7,11 @@ import styles from './Input.module.scss';
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /** The default color of the input border */
   outlineColor?: Colors;
-  /** Translucency from 0 to 100 (2023 website figma), 0 being transparent and 100 being opaque */
-  translucency?: number,
-  /** Removes border (2023 website figma) */
+  /** Opacity from 0 to 100, 0 being transparent and 100 being opaque */
+  opacity?: number,
+  /** Opacity from 0 to 100 when the input component is focused, 0 being transparent and 100 being opaque */
+  opacityOnHover?: number,
+  /** Removes border */
   noBorder?: boolean,
   /** Changes the color of placeholder text */
   placeHolderColor?: Colors,
@@ -35,7 +37,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 function Input({
   outlineColor = 'shades-0',
-  translucency = 38,
+  opacity = 100,
+  opacityOnHover = 100,
   noBorder = false,
   placeHolderColor,
   textColor,
@@ -52,7 +55,12 @@ function Input({
 }: InputProps) {
   if (status?.state) outlineColor = (status?.state === 'error' ? 'error-500' : 'success');
 
-  const style = { "--translucency": (translucency / 100) } as React.CSSProperties;
+  const style = {
+    "--input-opacity": (opacity / 100),
+    "--input-opacity-on-hover": (opacityOnHover / 100)
+  } as React.CSSProperties;
+
+  console.log(style);
 
   return (
     <div style={style}>
@@ -75,7 +83,7 @@ function Input({
           className={cx(
               outlineColor && styles[`outline--${outlineColor}`],
               styles.input,
-              translucency && styles[`translucent`],
+              (opacity !== 100 && opacityOnHover !== 100) && styles[`translucent`],
               noBorder && styles.noborder,
               placeHolderColor && styles[`placeholdercolor--${placeHolderColor}`],
               textColor && styles[`textcolor--${textColor}`],

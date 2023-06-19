@@ -64,10 +64,10 @@
 }
 
 .translucent {
-  background-color: colors.getColor(neutral-50, null, var(--translucency));
+  background-color: colors.getColor(neutral-50, null, var(--input-opacity));
 
   &:focus {
-    background-color: colors.getColor(neutral-50, null, 0.5)
+    background-color: colors.getColor(neutral-50, null, var(--input-opacity-on-hover))
   }
 }
 
