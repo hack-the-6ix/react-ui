@@ -64,10 +64,10 @@
 }
 
 .translucent {
-  background-color: colors.getColor(neutral-50, null, 0.38);
+  background-color: colors.getColor(neutral-50, null, var(--translucency));
 
   &:focus {
-    background-color: colors.getColor(neutral-50, null, 0.5)
+    background-color: colors.getColor(neutral-50, null, var(--translucency) + 0.12)
   }
 }
 
