@@ -60,8 +60,6 @@ function Input({
     "--input-opacity-on-hover": (opacityOnHover / 100)
   } as React.CSSProperties;
 
-  console.log(style);
-
   return (
     <div style={style}>
     <InputLayout
