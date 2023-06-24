@@ -1,7 +1,7 @@
 {
   "name": "@ht6/react-ui",
   "license": "MIT",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "module": "dist/esm/index.js",
   "main": "dist/cjs/index.js",
   "types": "dist/index.d.ts",
