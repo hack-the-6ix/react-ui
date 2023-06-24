@@ -9,7 +9,7 @@
   }
 }
 
-.placeholdercolor{
+.placeholdercolor {
   @each $color, $_ in colors.$config {
     &--#{$color} {
       &::placeholder{
@@ -19,7 +19,7 @@
   }
 }
 
-.textcolor{
+.textcolor {
   @each $color, $_ in colors.$config {
     &--#{$color} {
       color: colors.getColor($color)
