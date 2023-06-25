@@ -1,14 +1,16 @@
 import cx from 'classnames';
 import { forwardRef } from 'react';
-import { Colors, TextTypes } from '../../styles';
+import { Colors, TextTypes, Weights, DisplayTypes } from '../../styles';
 import { ComponentWithAs } from '../../types';
 import styles from './Typography.module.scss';
 
 export type TypographyProps = ComponentWithAs<{
   /** Font weight */
-  textWeight?: number;
+  textWeight: Weights;
   /** Type of text based on theme */
   textType: TextTypes;
+  /** Display type */
+  displayType: DisplayTypes;
   /** Colors based on theme */
   textColor?: Colors;
   /** Name of the class */
@@ -23,6 +25,7 @@ const Typography = forwardRef<HTMLElement, TypographyProps>(
       textWeight,
       textColor,
       textType,
+      displayType,
       ...props
     },
     ref,
@@ -30,13 +33,17 @@ const Typography = forwardRef<HTMLElement, TypographyProps>(
     return (
       <Component
         {...props}
-        style={{
-          '--typo-weight': textWeight,
-        }}
         className={cx(
           textColor && styles[`color--${textColor}`],
-          textType && styles[`type--${textType}`],
-          textWeight && styles[`with-weight`],
+          textType &&
+            styles[
+              `type--${
+                textType.charAt(0) == 'p'
+                  ? textType
+                  : `${textType}-${displayType}`
+              }`
+            ],
+          textWeight && styles[`weight--${textWeight}`],
           styles.text,
           className,
         )}

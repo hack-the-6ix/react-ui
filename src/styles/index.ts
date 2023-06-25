@@ -40,14 +40,28 @@ export const variables = {
     'grey',
   ] as const,
   textTypes: [
+    'display',
     'heading1',
     'heading2',
     'heading3',
     'heading4',
-    'subheading',
-    'paragraph1',
-    'paragraph2',
-    'paragraph3',
+    'heading5',
+    'heading6',
+    'paragraph-lg',
+    'paragraph-md',
+    'paragraph-sm',
+    'paragraph-xs'
+  ] as const,
+  displayTypes: [
+    'desktop',
+    'mobile'
+  ] as const,
+  weights: [
+    'regular',
+    'medium',
+    'semi-bold',
+    'bold',
+    'extra-bold'
   ] as const,
   speeds: {
     FAST: 150,
@@ -58,6 +72,8 @@ export const variables = {
 
 export type Colors = typeof variables['colors'][number];
 export type TextTypes = typeof variables['textTypes'][number];
+export type DisplayTypes = typeof variables['displayTypes'][number];
+export type Weights = typeof variables['weights'][number];
 export enum Speeds {
   FAST = variables.speeds.FAST,
   NORMAL = variables.speeds.NORMAL,
