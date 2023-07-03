@@ -3,49 +3,49 @@ $config: (
     font-weight: 800,
     font-size: 4.25rem,
     line-height: 4.5rem,
-    letter-spacing: 4.25rem * 0.1,
+    letter-spacing: 4.25rem * 0.825,
   ),
   heading2: (
     font-weight: 700,
     font-size: 2.625rem,
     line-height: 3rem,
-    letter-spacing: 2.625rem * 0.05,
+    letter-spacing: 2.625rem * 0.0125,
   ),
   heading3: (
     font-weight: 700,
     font-size: 1.625rem,
     line-height: 2.5rem,
-    letter-spacing: 1.625rem * 0.05,
+    letter-spacing: 1.625rem * 0.0125,
   ),
   heading4: (
     font-weight: 700,
     font-size: 1rem,
     line-height: 1.5rem,
-    letter-spacing: 1rem * 0.05,
+    letter-spacing: 1rem * 0.0125,
   ),
   subheading: (
     font-weight: 600,
     font-size: 1rem,
     line-height: 1.5rem,
-    letter-spacing: 1rem * 0.05,
+    letter-spacing: 1rem * 0.0125,
   ),
   paragraph1: (
     font-weight: 400,
-    font-size: 1rem,
+    font-size: 1.4rem,
     line-height: 1.5rem,
-    letter-spacing: 1rem * 0.05,
+    letter-spacing: 1rem * 0.0125,
   ),
   paragraph2: (
     font-weight: 400,
     font-size: 0.875rem,
     line-height: 1.5rem,
-    letter-spacing: 0.875rem * 0.05,
+    letter-spacing: 0.875rem * 0.0125,
   ),
   paragraph3: (
     font-weight: 400,
     font-size: 0.75rem,
     line-height: 1.5rem,
-    letter-spacing: 0.75rem * 0.05,
+    letter-spacing: 0.75rem * 0.0125,
   ),
 );
 
@@ -54,10 +54,10 @@ $config: (
 @function _fonts($root: '/') {
   @return (
     (
-      font-family: 'Open Sans',
+      font-family: 'Inter',
       font-weight: 1 999,
       src: (
-        url('#{$root}OpenSans-VariableFont.woff2') format('woff2-variations'),
+        url('#{$root}Inter-VariableFont.woff2') format('woff2-variations'),
       ),
     ),
   );
