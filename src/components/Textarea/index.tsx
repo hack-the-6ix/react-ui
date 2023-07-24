@@ -37,18 +37,18 @@ function Textarea({
       <Typography
         {...props}
         className={cx(
-          overLimit ? styles[`outline--error`] : styles[`outline--copy-dark`],
+          overLimit ? styles[`outline--error`] : styles['noBorder'],
           status && styles[status.state],
           styles.field,
         )}
-        textType='paragraph1'
+        textType='paragraph2'
         as='textarea'
       />
       {limit && !status?.text && (
         <Typography
           textColor={overLimit ? 'error-500' : 'disabled-dark'}
           className={styles.text}
-          textType='paragraph1'
+          textType='paragraph2'
         >
           {count}/{limit} words
         </Typography>
