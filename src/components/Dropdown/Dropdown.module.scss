@@ -1,5 +1,6 @@
 @use '../../styles/colors.module';
 @use '../../styles/mixins.module';
+@use '../../styles/vars.module';
 
 .container {
   position: relative;
@@ -11,10 +12,20 @@
   }
 }
 
+.color {
+  @each $color, $_ in colors.$config {
+    &--#{$color} {
+      background-color: colors.getColor($color);
+    }
+  }
+}
+
+$borderRadius: 1.5rem;
+
 .custom {
   @include mixins.transition(border-color);
-  border: 2px solid colors.getColor(primary-700);
-  border-radius: 0.25rem;
+  //border: 2px solid colors.getColor(primary-700);
+  border-radius: $borderRadius;
   position: absolute;
   width: 100%;
 
@@ -32,7 +43,7 @@
 }
 
 %trigger {
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem;
   border-radius: 0.25rem;
   box-sizing: border-box;
   text-align: start;
@@ -52,6 +63,8 @@
   appearance: none;
   opacity: 0;
 
+  pointer-events: none;
+
   @media (pointer: coarse) {
     opacity: 1;
     z-index: 2;
@@ -67,27 +80,46 @@
 .button {
   @extend %trigger;
   @include mixins.transition(background-color);
-  background: colors.getColor(copy-light);
+  background: colors.getColor(neutral-50, null, 0.18);
   grid-template-columns: auto 1rem;
   align-items: center;
   grid-gap: 0.75rem;
   display: grid;
 
+  color: colors.getColor(neutral-50);
+
+  border-top-left-radius: $borderRadius;
+  border-top-right-radius: $borderRadius;
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
+
   .disabled & {
-    background-color: colors.getColor(disabled-light);
+    color: colors.getColor(neutral-50, null, 0.38);
+    background-color: colors.getColor(neutral-50, null, 0.08);
     cursor: not-allowed;
+  }
+
+  &.expanded {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 
 .placeholder {
-  color: colors.getColor(grey);
+  color: colors.getColor(neutral-400);
+
+  .disabled & {
+    color: colors.getColor(neutral-50, null, 0.38);
+    cursor: not-allowed;
+  }
 }
 
 .caret {
   @include mixins.transition(transform color);
-  color: colors.getColor(primary-700);
+  color: colors.getColor(neutral-50);
+  transform: rotate(180deg);
   &.show {
-    transform: rotate(180deg);
+    transform: rotate(0deg);
   }
 
   .disabled & {
@@ -97,13 +129,26 @@
 
 .menu {
   @include mixins.transition(max-height);
-  background: colors.getColor(copy-light);
+  background: colors.getColor(neutral-50, null, 0.25);
   list-style-type: none;
   border-top: none;
   overflow: auto;
   max-height: 0;
   padding: 0;
   margin: 0;
+
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
+
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c5c5c5;
+  }
 
   &.show {
     max-height: 10rem;
@@ -112,6 +157,7 @@
 
 .item {
   @include mixins.transition(background-color);
+  color: colors.getColor(copy-light);
   padding: 0.5rem 0.75rem;
   cursor: pointer;
   background: none;
@@ -121,11 +167,11 @@
 
   &:hover,
   &:focus {
-    background-color: colors.getColor(copy-dark, $alpha: 0.06);
+    background-color: colors.getColor(neutral-50, $alpha: 0.38);
   }
 
   &:active,
   &.selected {
-    background-color: colors.getColor(copy-dark, $alpha: 0.12);
+    background-color: colors.getColor(neutral-50, $alpha: 0.5);
   }
 }
