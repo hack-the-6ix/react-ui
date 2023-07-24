@@ -21,7 +21,7 @@ export default {
 export const DefaultStory = (args: DropdownProps<DropdownOption>) => {
   const [value, setValue] = useState('');
   return (
-    <div style={{ width: 300 }}>
+    <div style={{ width: 300, height: 300 }}>
       <Dropdown
         {...args}
         onChange={(event) => {

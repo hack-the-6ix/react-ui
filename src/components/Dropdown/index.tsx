@@ -1,5 +1,5 @@
 import { SelectHTMLAttributes, useEffect, useRef, useState } from 'react';
-import { AiFillCaretDown } from 'react-icons/ai';
+import { RiArrowUpSLine } from 'react-icons/ri';
 import cx from 'classnames';
 import InputLayout, { InputLayoutProps } from '../InputLayout';
 import Typography from '../Typography';
@@ -19,6 +19,7 @@ export interface DropdownProps<T extends DropdownOption>
     >,
     Omit<InputLayoutProps, 'children'> {
   options: T[];
+  backgroundColor: string;
 }
 
 function Dropdown<T extends DropdownOption>({
@@ -28,6 +29,7 @@ function Dropdown<T extends DropdownOption>({
   status,
   label,
   options,
+  backgroundColor,
   ...props
 }: DropdownProps<T>) {
   const selectedOption = options.find((option) => option.value === props.value);
@@ -68,10 +70,11 @@ function Dropdown<T extends DropdownOption>({
       >
         <Typography
           {...props}
-          textType='paragraph1'
+          textType='paragraph2'
           className={styles.select}
           ref={selectRef}
           as='select'
+          onMouseDown={(e:MouseEvent) => e.preventDefault()}
         >
           {placeholder && (
             <option selected disabled hidden>
@@ -87,21 +90,25 @@ function Dropdown<T extends DropdownOption>({
             styles.custom,
             props.disabled && styles.disabled,
             status && styles[status.state],
+            backgroundColor && styles[`color--${backgroundColor}`]
           )}
+          style={backgroundColor && !styles[`color--${backgroundColor}`] ? {
+            backgroundColor: backgroundColor
+          } : {}}
         >
           <Typography
-            onClick={() => setShowMenu(!showMenu)}
-            className={styles.button}
+            onClick={() => setShowMenu((old) => !old)}
+            className={cx(styles.button, showMenu && styles.expanded)}
             disabled={props.disabled}
-            textType='paragraph1'
+            textType='paragraph2'
             tabIndex={-1}
             type='button'
             as='button'
           >
-            <span className={cx(selectedOption || styles.placeholder)}>
+            <span className={cx(selectedOption || styles.placeholder, props.disabled && styles.disabled)}>
               {selectedOption?.label ?? placeholder ?? 'Select an option'}
             </span>
-            <AiFillCaretDown
+            <RiArrowUpSLine
               className={cx(showMenu && styles.show, styles.caret)}
             />
           </Typography>
@@ -118,7 +125,7 @@ function Dropdown<T extends DropdownOption>({
                     );
                   }}
                   disabled={props.disabled}
-                  textType='paragraph1'
+                  textType='paragraph2'
                   className={cx(
                     selectedOption === option && styles.selected,
                     styles.item,

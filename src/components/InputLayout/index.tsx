@@ -66,7 +66,7 @@ function InputLayout({
           className={styles.status}
           as='span'
           textType='paragraph2'
-          textColor={status.state ?? 'neutral-900'}
+          textColor={status.state ?? 'copy-light'}
         >
           {status.text}
         </Typography>

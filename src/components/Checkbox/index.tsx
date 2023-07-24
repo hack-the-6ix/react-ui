@@ -31,7 +31,7 @@ function Checkbox({
   return (
     <Typography
       as='label'
-      textType='subheading'
+      textType='paragraph2'
       textColor={disabled ? 'disabled-dark' : status?.state ?? color}
       className={cx(styles.container, disabled && styles.disabled, className)}
     >

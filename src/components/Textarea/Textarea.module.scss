@@ -9,18 +9,22 @@
   }
 }
 
+.noBorder {
+  border: none;
+}
+
 .field {
   @include mixins.transition(border-color background-color);
   padding: 0.5rem 0.75rem;
-  border-radius: 0.25rem;
-  border-style: solid;
-  border-width: 0.125rem;
+  border-radius: 1.25rem;
   resize: vertical;
+
+  background-color: colors.getColor(neutral-50, null, 0.18);
+  color: colors.getColor(neutral-50);
 
   &:focus {
     outline: none;
-    border-color: colors.getColor(primary-500);
-    background-color: colors.getColor(shades-0);
+    background-color: colors.getColor(neutral-50, null, 0.5);
   }
 
   &.success {
@@ -32,7 +36,10 @@
   }
 
   &:disabled {
+    background-color: colors.getColor(neutral-50, null, 0.08);
+    color: colors.getColor(neutral-50, null, 0.38);
     border-color: colors.getColor(disabled-dark);
+    cursor: not-allowed;
   }
 }
 

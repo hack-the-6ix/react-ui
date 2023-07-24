@@ -22,7 +22,7 @@ export default {
 export const DefaultStory = (args: SearchDropdownProps<DropdownOption>) => {
   const [value, setValue] = useState('');
   return (
-    <div style={{ width: 300, height: 200 }}>
+    <div style={{ width: 300, height: 300 }}>
       <SearchDropdown
         {...args}
         onChange={(event) => {
