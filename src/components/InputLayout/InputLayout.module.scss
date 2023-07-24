@@ -16,10 +16,6 @@
 .label,
 .assistiveText {
   @include mixins.transition(color);
-}
-
-.label,
-.assistiveText {
   margin-left: 0.75rem;
 }
 
