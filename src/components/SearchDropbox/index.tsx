@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { AiFillCaretDown } from 'react-icons/ai';
+import { RiArrowUpSLine } from 'react-icons/ri';
 import cx from 'classnames';
 import InputLayout, { InputLayoutProps } from '../InputLayout';
 import { DropdownOption } from '../Dropdown';
@@ -19,6 +19,8 @@ export interface SearchDropdownProps<T extends DropdownOption>
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'name'>,
     Omit<InputLayoutProps, 'children'> {
   options: T[];
+  backgroundColor: string;
+  enableSearch: boolean;
 }
 
 function SearchDropdown<T extends DropdownOption>({
@@ -27,6 +29,8 @@ function SearchDropdown<T extends DropdownOption>({
   status,
   label,
   options,
+  backgroundColor,
+  enableSearch,
   ...props
 }: SearchDropdownProps<T>) {
   const selectedOption = options.find((option) => option.value === props.value);
@@ -51,6 +55,8 @@ function SearchDropdown<T extends DropdownOption>({
     !showMenu,
   );
 
+  const filteredOptions = enableSearch ? options.filter((option) => (option.label.startsWith(inputRef.current?.value ?? '') || option.value.startsWith(inputRef.current?.value ?? ''))) : options;
+
   return (
     <InputLayout
       required={props.required}
@@ -70,7 +76,11 @@ function SearchDropdown<T extends DropdownOption>({
             styles.custom,
             props.disabled && styles.disabled,
             status && styles[status.state],
+            backgroundColor && styles[`color--${backgroundColor}`]
           )}
+          style={backgroundColor && !styles[`color--${backgroundColor}`] ? {
+            backgroundColor: backgroundColor
+          } : {}}
         >
           <div className={styles.display}>
             <Typography
@@ -79,48 +89,56 @@ function SearchDropdown<T extends DropdownOption>({
                 props.onFocus?.(e);
                 setShowMenu(true);
               }}
-              textType='paragraph1'
-              className={styles.input}
+              textType='paragraph2'
+              className={cx(styles.input, (showMenu && filteredOptions.length > 0) && styles.expanded)}
               ref={inputRef}
               as='input'
             />
-            <AiFillCaretDown
+            <RiArrowUpSLine
               className={cx(showMenu && styles.show, styles.caret)}
             />
           </div>
-          <ul className={cx(showMenu && styles.show, styles.menu)}>
-            {options.map((option, key) => (
-              <li key={key}>
-                <Typography
-                  tabIndex={showMenu ? undefined : -1}
-                  onClick={(e: MouseEvent<HTMLButtonElement>) => {
-                    if (!inputRef.current) return;
-                    props.onChange?.({
-                      ...e,
-                      currentTarget: {
-                        ...inputRef.current,
-                        value: option.value,
-                      },
-                      target: {
-                        ...inputRef.current,
-                        value: option.value,
-                      },
-                    } as any);
-                  }}
-                  disabled={props.disabled}
-                  textType='paragraph1'
-                  className={cx(
-                    selectedOption === option && styles.selected,
-                    styles.item,
-                  )}
-                  as='button'
-                  type='button'
-                >
-                  {option.label}
-                </Typography>
-              </li>
-            ))}
-          </ul>
+          <div className={cx(
+            styles.menuContainer,
+            backgroundColor && styles[`color--${backgroundColor}`]
+            )}
+            style={backgroundColor && !styles[`color--${backgroundColor}`] ? {
+              backgroundColor: backgroundColor
+            } : {}}>
+            <ul className={cx(showMenu && styles.show, styles.menu)}>
+              {filteredOptions.map((option, key) => (
+                  <li key={key}>
+                    <Typography
+                        tabIndex={showMenu ? undefined : -1}
+                        onClick={(e: MouseEvent<HTMLButtonElement>) => {
+                          if (!inputRef.current) return;
+                          props.onChange?.({
+                            ...e,
+                            currentTarget: {
+                              ...inputRef.current,
+                              value: option.value,
+                            },
+                            target: {
+                              ...inputRef.current,
+                              value: option.value,
+                            },
+                          } as any);
+                        }}
+                        disabled={props.disabled}
+                        textType='paragraph2'
+                        className={cx(
+                            selectedOption === option && styles.selected,
+                            styles.item,
+                        )}
+                        as='button'
+                        type='button'
+                    >
+                      {option.label}
+                    </Typography>
+                  </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </InputLayout>
